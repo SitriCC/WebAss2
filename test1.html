@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>无缝滚动示例 - JavaScript</title>
+    <style>
+        #scroll-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            height: 300px;
+        }
+        #scroll-content {
+            position: absolute;
+            white-space: nowrap;
+        }
+        .scroll-item {
+            display: inline-block;
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="scroll-container">
+    <div id="scroll-content">
+        <img src="/image/img.jpg" class="scroll-item" alt="img1">
+        <img src="/image/react.png" class="scroll-item" alt="img2">
+        <img src="/image/vue.png" class="scroll-item" alt="img3">
+    </div>
+</div>
+
+<script>
+    const container = document.getElementById('scroll-content');
+    let containerWidth = container.offsetWidth;
+    let initialPos = 0;
+
+    // 初始化，复制内容以实现无缝滚动
+    container.innerHTML += container.innerHTML;
+
+    function scrollContent() {
+        initialPos -= 2; // 调整此值以改变滚动速度
+        if (Math.abs(initialPos) >= containerWidth) {
+            initialPos = 0;
+        }
+        container.style.transform = `translateX(${initialPos}px)`;
+        requestAnimationFrame(scrollContent);
+    }
+
+    scrollContent();
+</script>
+
+</body>
+</html>
