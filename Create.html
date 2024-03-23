@@ -2,9 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Create Account</title>
+    <link rel="stylesheet" href="Create.css">
+    <script src="Create.js"></script>
 </head>
 <body>
-
+<div class="create-box">
+    <!-- 添加 form 标签 -->
+    <form class="create-account" action="/submit-form-url" method="post">
+        <label for="email">请输入邮箱</label>
+        <input type="text" id="email" name="email">
+        <label for="user-name">请输入用户名</label>
+        <input type="text" id="user-name" name="username">
+        <label for="password">请输入密码</label>
+        <input type="password" id="password" name="password">
+        <label for="password2">请再次输入密码</label>
+        <input type="password" id="password2" name="password2">
+        <!-- 类型改为 submit -->
+        <button type="submit" class="create-btn">创建账号</button>
+    </form>
+</div>
 </body>
 </html>
