@@ -1,5 +1,5 @@
 <?php
-class Posts
+class Post
 {
     private $postID;
     private $userID;

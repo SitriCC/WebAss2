@@ -1,5 +1,5 @@
 <?php
-class Comments{
+class Comment{
     private $commentsID;
     private $postID;
     private $userID;
