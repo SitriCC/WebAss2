@@ -42,96 +42,96 @@ class userDAO extends abstractDAO {
     }
     
     /*
-     * This is an example of how to use a prepared statement
-     * with a select query.
+     * This is method to query by userID
      */
-   /* public function getEmployee($employeeId){
+public function getUser($userID){
         $query = 'SELECT * FROM employees WHERE employeeId = ?';
         $stmt = $this->mysqli->prepare($query);
-        $stmt->bind_param('i', $employeeId);
+        $stmt->bind_param('i', $userID);
         $stmt->execute();
         $result = $stmt->get_result();
         if($result->num_rows == 1){
             $temp = $result->fetch_assoc();
-            $employee = new Employee($temp['employeeId'], $temp['firstName'], $temp['lastName']);
+            $user = new User($temp['userID'], $temp['firstName'], $temp['lastName'], $temp['email'], $temp['createdTime']);
             $result->free();
-            return $employee;
+            return $user;
         }
         $result->free();
         return false;
     }
+    /*
+     public function addEmployee($employee){
+         if(!is_numeric($employee->getEmployeeId())){
+             return 'EmployeeId must be a number.';
+         }
+         if(!$this->mysqli->connect_errno){
+             //The query uses the question mark (?) as a
+             //placeholder for the parameters to be used
+             //in the query.
+             $query = 'INSERT INTO employees VALUES (?,?,?)';
+             //The prepare method of the mysqli object returns
+             //a mysqli_stmt object. It takes a parameterized
+             //query as a parameter.
+             $stmt = $this->mysqli->prepare($query);
+             //The first parameter of bind_param takes a string
+             //describing the data. In this case, we are passing
+             //three variables: an integer(employeeId), and two
+             //strings (firstName and lastName).
+             //
+             //The string contains a one-letter datatype description
+             //for each parameter. 'i' is used for integers, and 's'
+             //is used for strings.
+             $stmt->bind_param('iss',
+                     $employee->getEmployeeId(),
+                     $employee->getFirstName(),
+                     $employee->getLastName());
+             //Execute the statement
+             $stmt->execute();
+             //If there are errors, they will be in the error property of the
+             //mysqli_stmt object.
+             if($stmt->error){
+                 return $stmt->error;
+             } else {
+                 return $employee->getFirstName() . ' ' . $employee->getLastName() . ' added successfully!';
+             }
+         } else {
+             return 'Could not connect to Database.';
+         }
+     }
 
-    public function addEmployee($employee){
-        if(!is_numeric($employee->getEmployeeId())){
-            return 'EmployeeId must be a number.';
-        }
-        if(!$this->mysqli->connect_errno){
-            //The query uses the question mark (?) as a
-            //placeholder for the parameters to be used
-            //in the query.
-            $query = 'INSERT INTO employees VALUES (?,?,?)';
-            //The prepare method of the mysqli object returns
-            //a mysqli_stmt object. It takes a parameterized
-            //query as a parameter.
-            $stmt = $this->mysqli->prepare($query);
-            //The first parameter of bind_param takes a string
-            //describing the data. In this case, we are passing
-            //three variables: an integer(employeeId), and two
-            //strings (firstName and lastName).
-            //
-            //The string contains a one-letter datatype description
-            //for each parameter. 'i' is used for integers, and 's'
-            //is used for strings.
-            $stmt->bind_param('iss',
-                    $employee->getEmployeeId(),
-                    $employee->getFirstName(),
-                    $employee->getLastName());
-            //Execute the statement
-            $stmt->execute();
-            //If there are errors, they will be in the error property of the
-            //mysqli_stmt object.
-            if($stmt->error){
-                return $stmt->error;
-            } else {
-                return $employee->getFirstName() . ' ' . $employee->getLastName() . ' added successfully!';
-            }
-        } else {
-            return 'Could not connect to Database.';
-        }
-    }
+     public function deleteEmployee($employeeId){
+         if(!$this->mysqli->connect_errno){
+             $query = 'DELETE FROM employees WHERE employeeId = ?';
+             $stmt = $this->mysqli->prepare($query);
+             $stmt->bind_param('i', $employeeId);
+             $stmt->execute();
+             if($stmt->error){
+                 return false;
+             } else {
+                 return true;
+             }
+         } else {
+             return false;
+         }
+     }
+*/
+//email'], $temp['createdTime']);
+     public function editUser($employeeId, $firstName, $lastName){
+         if(!$this->mysqli->connect_errno){
+             $query = 'UPDATE employees SET firstName = ?, lastName = ? WHERE employeeId = ?';
+             $stmt = $this->mysqli->prepare($query);
+             $stmt->bind_param('ssi', $firstName, $lastName, $employeeId);
+             $stmt->execute();
+             if($stmt->error){
+                 return false;
+             } else {
+                 return $stmt->affected_rows;
+             }
+         } else {
+             return false;
+         }
+     }
 
-    public function deleteEmployee($employeeId){
-        if(!$this->mysqli->connect_errno){
-            $query = 'DELETE FROM employees WHERE employeeId = ?';
-            $stmt = $this->mysqli->prepare($query);
-            $stmt->bind_param('i', $employeeId);
-            $stmt->execute();
-            if($stmt->error){
-                return false;
-            } else {
-                return true;
-            }
-        } else {
-            return false;
-        }
-    }
-
-    public function editEmployee($employeeId, $firstName, $lastName){
-        if(!$this->mysqli->connect_errno){
-            $query = 'UPDATE employees SET firstName = ?, lastName = ? WHERE employeeId = ?';
-            $stmt = $this->mysqli->prepare($query);
-            $stmt->bind_param('ssi', $firstName, $lastName, $employeeId);
-            $stmt->execute();
-            if($stmt->error){
-                return false;
-            } else {
-                return $stmt->affected_rows;
-            }
-        } else {
-            return false;
-        }
-    }
-   */
 }
 
 ?>
