@@ -30,7 +30,7 @@ class userDAO extends abstractDAO {
         
         if($result->num_rows >= 1){
             while($row = $result->fetch_assoc()){
-                //Create a new employee object, and add it to the array.
+                //Create a new User object, and add it to the array.
                 $user = new User($row['userID'], $row['firstName'], $row['lastName'], $row['email'], $row['createdTime']);
                 $users[] = $user;
             }
@@ -59,6 +59,7 @@ public function getUser($userID){
         $result->free();
         return false;
     }
+
     /*
      public function addEmployee($employee){
          if(!is_numeric($employee->getEmployeeId())){

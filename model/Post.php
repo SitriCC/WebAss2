@@ -7,7 +7,8 @@ class Post
     private $content;
     private $createdTime;
     private $updatedTime;
-
+    //User is a property to hold author's info
+    public $user;
     /**
      * @param $postID
      * @param $userID
@@ -16,16 +17,32 @@ class Post
      * @param $createdTime
      * @param $updatedTime
      */
-    public function __construct($postID, $userID, $title, $content, $createdTime, $updatedTime)
-    {
+//    public function __construct($postID, $userID, $title, $content, $createdTime, $updatedTime)
+//    {
+//        $this->postID = $postID;
+//        $this->userID = $userID;
+//        $this->title = $title;
+//        $this->content = $content;
+//        $this->createdTime = $createdTime;
+//        $this->updatedTime = $updatedTime;
+//    }
+    /**
+     * @param $postID
+     * @param $userID
+     * @param $title
+     * @param $content
+     * @param $createdTime
+     * @param $updatedTime
+     * @param $user
+     */
+    public function __construct($postID, $title, $content, $createdTime, $updatedTime, $user) {
         $this->postID = $postID;
-        $this->userID = $userID;
         $this->title = $title;
         $this->content = $content;
         $this->createdTime = $createdTime;
         $this->updatedTime = $updatedTime;
+        $this->user = $user; // User object
     }
-
     /**
      * @return mixed
      */
