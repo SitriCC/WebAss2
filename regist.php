@@ -8,18 +8,16 @@
 </head>
 <body>
 <div class="create-box">
-    <!-- 添加 form 标签 -->
     <form class="create-account" action="/submit-form-url" method="post">
-        <label for="email">请输入邮箱</label>
+        <label for="email">Email</label>
         <input type="text" id="email" name="email">
-        <label for="user-name">请输入用户名</label>
+        <label for="user-name">UserName</label>
         <input type="text" id="user-name" name="username">
-        <label for="password">请输入密码</label>
+        <label for="password">Password</label>
         <input type="password" id="password" name="password">
-        <label for="password2">请再次输入密码</label>
+        <label for="password2">Re-Password</label>
         <input type="password" id="password2" name="password2">
-        <!-- 类型改为 submit -->
-        <button type="submit" class="create-btn">创建账号</button>
+        <button type="submit" class="create-btn">Create Account</button>
     </form>
 </div>
 </body>

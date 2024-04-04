@@ -8,14 +8,14 @@
 <body>
 <div class="login">
     <div class="log-text">
-        <h2>登录到WordPress</h2>
-        <label for="user-name">电子邮件地址或用户名</label>
+        <h2>Login to WordPress</h2>
+        <label for="user-name">userName</label>
         <input id="user-name" type="text">
         <label for="user-password"></label>
         <input id="user-password" type="password">
-        <button type="submit" id="submit">登录</button>
-        <a href="create.html" class="create">创建账号</a>
+        <button type="submit" id="submit">Login</button>
+        <a href="regist.php" class="create">Register</a>
     </div>
 </div>
 </body>
-</html>
+</html><?php
