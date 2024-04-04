@@ -9,26 +9,9 @@ class PostBlog
     private $updatedTime;
     //User is a property to hold author's info
     public $user;
+
     /**
      * @param $postBlogID
-     * @param $userID
-     * @param $title
-     * @param $content
-     * @param $createdTime
-     * @param $updatedTime
-     */
-//    public function __construct($postBlogID, $userID, $title, $content, $createdTime, $updatedTime)
-//    {
-//        $this->PostBlogID = $postBlogID;
-//        $this->userID = $userID;
-//        $this->title = $title;
-//        $this->content = $content;
-//        $this->createdTime = $createdTime;
-//        $this->updatedTime = $updatedTime;
-//    }
-    /**
-     * @param $postBlogID
-     * @param $userID
      * @param $title
      * @param $content
      * @param $createdTime
@@ -36,19 +19,20 @@ class PostBlog
      * @param $user
      */
     public function __construct($postBlogID, $title, $content, $createdTime, $updatedTime, $user) {
-        $this->PostBlogID = $postBlogID;
+        $this->postBlogID = $postBlogID;
         $this->title = $title;
         $this->content = $content;
         $this->createdTime = $createdTime;
         $this->updatedTime = $updatedTime;
         $this->user = $user; // User object
     }
+
     /**
      * @return mixed
      */
     public function getPostBlogID()
     {
-        return $this->PostBlogID;
+        return $this->postBlogID;
     }
 
     /**
@@ -56,7 +40,7 @@ class PostBlog
      */
     public function setPostBlogID($postBlogID)
     {
-        $this->PostBlogID = $postBlogID;
+        $this->postBlogID = $postBlogID;
     }
 
     /**
@@ -138,6 +122,23 @@ class PostBlog
     {
         $this->updatedTime = $updatedTime;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
 
 
 }
