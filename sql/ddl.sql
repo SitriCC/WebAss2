@@ -13,8 +13,8 @@ CREATE TABLE Users (
                        createdTime DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE Posts (
-                       postID INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE PostBlogs (
+                       postBlogID INT AUTO_INCREMENT PRIMARY KEY,
                        userID INT,
                        title VARCHAR(255) NOT NULL,
                        content TEXT NOT NULL,
@@ -25,10 +25,10 @@ CREATE TABLE Posts (
 
 CREATE TABLE Comments (
                           commentsID INT AUTO_INCREMENT PRIMARY KEY,
-                          postID INT,
+                          postBlogID INT,
                           userID INT,
                           comment TEXT NOT NULL,
                           createdTime DATETIME DEFAULT CURRENT_TIMESTAMP,
-                          FOREIGN KEY (postID) REFERENCES Posts(postID),
+                          FOREIGN KEY (postBlogID) REFERENCES PostBlogs(postBlogID),
                           FOREIGN KEY (userID) REFERENCES Users(userID)
 );

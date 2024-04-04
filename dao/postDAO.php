@@ -1,7 +1,7 @@
 <?php
 require_once('abstractDAO.php');
-require_once('./model/Post.php');
-class postDAO  extends abstractDAO {
+require_once('./model/PostBlog.php');
+class PostBlogBlogDAO  extends abstractDAO {
 
     function __construct() {
         try{
@@ -12,36 +12,36 @@ class postDAO  extends abstractDAO {
     }
 
 
-    public function getPosts() {
-        $query = "SELECT p.postID, p.title, p.content, u.firstName, u.lastName, p.createdTime, p.updatedTime 
-                  FROM Posts p 
+    public function getPostBlogs() {
+        $query = "SELECT p.PostBlogID, p.title, p.content, u.firstName, u.lastName, p.createdTime, p.updatedTime 
+                  FROM PostBlogs p 
                   INNER JOIN Users u ON p.userID = u.userID";
 
         $stmt = $this->mysqli->prepare($query);
         $stmt->execute();
 
-        $posts = [];
+        $PostBlogs = [];
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $user = new User($row['firstName'], $row['lastName']);
-            $post = new Post($row['postID'], $row['title'], $row['content'], $row['createdTime'], $row['updatedTime'], $user);
-            array_push($posts, $post);
+            $PostBlog = new PostBlog($row['PostBlogID'], $row['title'], $row['content'], $row['createdTime'], $row['updatedTime'], $user);
+            array_push($PostBlogs, $PostBlog);
         }
 
-        return $posts;
+        return $PostBlogs;
     }
 
 
 
-    public function getPostById($postID) {
-        $query = "SELECT p.postID, p.title, p.content, u.firstName, u.lastName, p.createdTime, p.updatedTime 
-                  FROM Posts p 
+    public function getPostBlogById($PostBlogID) {
+        $query = "SELECT p.PostBlogID, p.title, p.content, u.firstName, u.lastName, p.createdTime, p.updatedTime 
+                  FROM PostBlogs p 
                   INNER JOIN Users u ON p.userID = u.userID 
-                  WHERE p.postID = :postID";
+                  WHERE p.PostBlogID = :PostBlogID";
 
         $stmt = $this->mysqli->prepare($query);
-        // Bind the $postID parameter to the query
-        $stmt->bindParam(':postID', $postID, PDO::PARAM_INT);
+        // Bind the $PostBlogID parameter to the query
+        $stmt->bindParam(':PostBlogID', $PostBlogID, PDO::PARAM_INT);
         $stmt->execute();
 
         // Fetch the result as an associative array
@@ -49,8 +49,8 @@ class postDAO  extends abstractDAO {
 
         if ($row) {
             $user = new User($row['firstName'], $row['lastName']);
-            $post = new Post($row['postID'], $row['title'], $row['content'], $row['createdTime'], $row['updatedTime'], $user);
-            return $post; // Return the Post
+            $PostBlog = new PostBlog($row['PostBlogID'], $row['title'], $row['content'], $row['createdTime'], $row['updatedTime'], $user);
+            return $PostBlog; // Return the PostBlog
         } else {
             return null;
         }
