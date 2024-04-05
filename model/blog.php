@@ -1,46 +1,58 @@
 <?php
-class PostBlog
+class blog
 {
-    private $postBlogID;
+    private $blogID;
     private $userID;
     private $title;
     private $content;
     private $createdTime;
     private $updatedTime;
-    //User is a property to hold author's info
+    //user is a property to hold author's info
     public $user;
 
     /**
-     * @param $postBlogID
+     * @param $blogID
+     * @param $title
+     * @param $content
+     */
+    public function __construct($blogID, $title, $content)
+    {
+        $this->blogID = $blogID;
+        $this->title = $title;
+        $this->content = $content;
+    }
+
+    /**
+     * @param $blogID
      * @param $title
      * @param $content
      * @param $createdTime
      * @param $updatedTime
      * @param $user
      */
-    public function __construct($postBlogID, $title, $content, $createdTime, $updatedTime, $user) {
-        $this->postBlogID = $postBlogID;
+/*    public function __construct($blogID, $title, $content, $createdTime, $updatedTime, $user) {
+        $this->blogID = $blogID;
         $this->title = $title;
         $this->content = $content;
         $this->createdTime = $createdTime;
         $this->updatedTime = $updatedTime;
-        $this->user = $user; // User object
-    }
+        $this->user = $user; // user object
+    }*/
 
     /**
      * @return mixed
      */
-    public function getPostBlogID()
+    public function getBlogID()
     {
-        return $this->postBlogID;
+        return $this->blogID;
     }
 
     /**
-     * @param mixed $postBlogID
+     * @param mixed $blogID
      */
-    public function setPostBlogID($postBlogID)
+    public function setBlogID($blogID)
     {
-        $this->postBlogID = $postBlogID;
+        $this->blogID = $blogID;
     }
 
     /**

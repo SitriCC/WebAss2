@@ -7,17 +7,17 @@ USE cst8285;
 
 CREATE TABLE Users (
                        userID INT AUTO_INCREMENT PRIMARY KEY,
-                       firstName VARCHAR(50) NOT NULL,
-                       lastName VARCHAR(50) NOT NULL,
-                       email VARCHAR(255) NOT NULL,
+                       firstName VARCHAR(50) ,
+                       lastName VARCHAR(50) ,
+                       email VARCHAR(255) ,
                        createdTime DATETIME DEFAULT CURRENT_TIMESTAMP
 );
-
-CREATE TABLE PostBlogs (
-                       postBlogID INT AUTO_INCREMENT PRIMARY KEY,
+ 
+CREATE TABLE Blogs (
+                       blogID INT AUTO_INCREMENT PRIMARY KEY,
                        userID INT,
-                       title VARCHAR(255) NOT NULL,
-                       content TEXT NOT NULL,
+                       title VARCHAR(255) ,
+                       content TEXT ,
                        createdTime DATETIME DEFAULT CURRENT_TIMESTAMP,
                        updatedTime DATETIME ON UPDATE CURRENT_TIMESTAMP,
                        FOREIGN KEY (userID) REFERENCES Users(userID)
@@ -25,10 +25,10 @@ CREATE TABLE PostBlogs (
 
 CREATE TABLE Comments (
                           commentsID INT AUTO_INCREMENT PRIMARY KEY,
-                          postBlogID INT,
+                          blogID INT,
                           userID INT,
-                          comment TEXT NOT NULL,
+                          comment TEXT ,
                           createdTime DATETIME DEFAULT CURRENT_TIMESTAMP,
-                          FOREIGN KEY (postBlogID) REFERENCES PostBlogs(postBlogID),
+                          FOREIGN KEY (blogID) REFERENCES Blogs(blogID),
                           FOREIGN KEY (userID) REFERENCES Users(userID)
 );

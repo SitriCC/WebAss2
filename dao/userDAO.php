@@ -1,6 +1,6 @@
 <?php
 require_once('abstractDAO.php');
-require_once('./model/User.php');
+require_once('./model/user.php');
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -20,18 +20,18 @@ class userDAO extends abstractDAO {
     /*
      * This is an example of how to use the query() method of a mysqli object.
      * 
-     * Returns an array of <code>User</code> objects. If no user exist, returns false.
+     * Returns an array of <code>user</code> objects. If no user exist, returns false.
      */
     public function getUsers(){
         //The query method returns a mysqli_result object
-        $result = $this->mysqli->query('SELECT * FROM User');
+        $result = $this->mysqli->query('SELECT * FROM user');
         //declaration of users array
         $users = Array();
         
         if($result->num_rows >= 1){
             while($row = $result->fetch_assoc()){
-                //Create a new User object, and add it to the array.
-                $user = new User($row['userID'], $row['firstName'], $row['lastName'], $row['email'], $row['createdTime']);
+                //Create a new user object, and add it to the array.
+                $user = new user($row['userID'], $row['firstName'], $row['lastName'], $row['email'], $row['createdTime']);
                 $users[] = $user;
             }
             $result->free();
@@ -52,7 +52,7 @@ public function getUser($userID){
         $result = $stmt->get_result();
         if($result->num_rows == 1){
             $temp = $result->fetch_assoc();
-            $user = new User($temp['userID'], $temp['firstName'], $temp['lastName'], $temp['email'], $temp['createdTime']);
+            $user = new user($temp['userID'], $temp['firstName'], $temp['lastName'], $temp['email'], $temp['createdTime']);
             $result->free();
             return $user;
         }
