@@ -14,13 +14,14 @@ class user
      * @param $email
      * @param $createdTime
      */
-    public function __construct($userID,$firstName, $lastName, $email, $createdTime) {
+    public function __construct($userID, $firstName, $lastName, $email, $createdTime = null) {
         $this->userID = $userID;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->email = $email;
-        $this->createdTime = $createdTime;
-
+        if ($createdTime !== null) {
+            $this->createdTime = $createdTime;
+        }
     }
 
 

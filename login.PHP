@@ -8,10 +8,10 @@
 <body>
 <div class="login">
     <div class="log-text">
-        <h2>Login to WordPress</h2>
-        <label for="user-name">userName</label>
+        <h2>Login to High Blog</h2>
+        <label for="user-name">User Name</label>
         <input id="user-name" type="text">
-        <label for="user-password"></label>
+        <label for="user-password">Pass Word</label>
         <input id="user-password" type="password">
         <button type="submit" id="submit">Login</button>
         <a href="regist.php" class="create">Register</a>

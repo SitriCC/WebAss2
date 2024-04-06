@@ -8,37 +8,35 @@ if (isset($_GET['action'])) {
         if (isset($_POST['userID']) &&
             isset($_POST['firstName']) &&
             isset($_POST['lastName']) &&
-            isset($_POST['email']) &&
-            isset($_POST['createdTime'])){
+            isset($_POST['email'])){
 
             // 检查员工ID是否为数字，且名字和姓氏字段不为空
             if (is_numeric($_POST['userID']) &&
                 $_POST['firstName'] != "" &&
                 $_POST['lastName'] != "" &&
-                $_POST['email'] != "" &&
-                $_POST['createdTime'] != "") {
+                $_POST['email'] != "") {
 
                 // 实例化employeeDAO类，以便使用其方法
                 $userDAO = new userDAO();
                 // 调用editEmployee方法编辑员工信息，并获取操作结果
                 $result = $userDAO->updateUser($_POST['userID'],
-                    $_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['createdTime']);
+                    $_POST['firstName'], $_POST['lastName'], $_POST['email']);
 
                 // 根据操作结果重定向到不同的页面
                 if ($result > 0) {
                     // 如果编辑成功，重定向到编辑页面，并附带更新记录的数量和员工ID
-                    header('Location:edit.php?recordsUpdated=' . $result . '&userID=' . $_POST['userID']);
+                    header('Location:edit_user.php?recordsUpdated=' . $result . '&userID=' . $_POST['userID']);
                 } else {
                     // 如果没有记录被更新，也重定向到编辑页面，但只附带员工ID
-                    header('Location:edit.php?userID=' . $_POST['userID']);
+                    header('Location:edit_user.php?userID=' . $_POST['userID']);
                 }
             } else {
                 // 如果必要字段缺失，重定向到编辑页面，并提示缺失字段
-                header('Location:edit.php?missingFields=true&userID=' . $_POST['userID']);
+                header('Location:edit_user.php?missingFields=true&userID=' . $_POST['userID']);
             }
         } else {
             // 如果表单没有正确提交，重定向到编辑页面，并提示错误
-            header('Location:edit.php?error=true&userID=' . $_POST['userID']);
+            header('Location:edit_user.php?error=true&userID=' . $_POST['userID']);
         }
     }
 
@@ -53,10 +51,10 @@ if (isset($_GET['action'])) {
             // 根据操作结果重定向到不同的页面
             if ($success) {
                 // 如果删除成功，重定向到主页，并附带删除成功的标志
-                header('Location:index_user.php?deleted=true');
+                header('Location:user_manage.php?deleted=true');
             } else {
                 // 如果删除失败，重定向到主页，并附带删除失败的标志
-                header('Location:index_user.php?deleted=false');
+                header('Location:user_manage.php?deleted=false');
             }
         }
     }

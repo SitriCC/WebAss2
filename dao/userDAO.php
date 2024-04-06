@@ -69,28 +69,30 @@ class userDAO extends abstractDAO
             return 'UserId must be a number.';
         }
         if (!$this->mysqli->connect_errno) {
-            $query = 'INSERT INTO Users (userID, firstName, lastName, email, createdTime)VALUES (?,?,?,?,?)';
+            $query = 'INSERT INTO Users VALUES (?,?,?,?,?)';
             $stmt = $this->mysqli->prepare($query);
             $userID = $user->getUserID();
             $firstName = $user->getFirstName();
             $lastName = $user->getLastName();
             $email = $user->getEmail();
-            $createdTime = $user->getCreatedTime();
+            $createdTime = date('Y-m-d H:i:s');
             $stmt->bind_param('issss', $userID, $firstName, $lastName, $email, $createdTime);
             $stmt->execute();
             if ($stmt->error) {
                 return $stmt->error;
             } else {
-                return $user->getFirstName() . ' ' . $user->getLastName() . ' ' . $user->getEmail() . ' ' . $user->getCreatedTime() . 'added successfully!';
+                return $user->getFirstName() . ' ' . $user->getLastName() . ' ' . $user->getEmail() . ' ' . $createdTime . 'added successfully!';
             }
         } else {
             return 'Could not connect to Database.';
         }
     }
 
-    public function updateUser($userID, $firstName, $lastName, $email, $createdTime): bool
+    public function updateUser($userID, $firstName, $lastName, $email): bool
     {
+
         if (!$this->mysqli->connect_errno) {
+            $createdTime = date('Y-m-d H:i:s');
             $query = 'UPDATE Users SET firstName =?, lastName =?, email =?, createdTime =? WHERE userID =?';
             $stmt = $this->mysqli->prepare($query);
             $stmt->bind_param('ssssi',$firstName, $lastName, $email, $createdTime,$userID);
@@ -119,6 +121,17 @@ class userDAO extends abstractDAO
             }
         } else {
             return false;
+        }
+    }
+
+    public function getMaxUserId() {
+        $query = "SELECT MAX(userID) as maxId FROM Users";
+        $result = $this->mysqli->query($query);
+        if($result) {
+            $row = $result->fetch_assoc();
+            return $row['maxId'] + 1;
+        } else {
+            return null;
         }
     }
 }

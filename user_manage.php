@@ -5,6 +5,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>UserDAO</title>
+    <link rel="stylesheet" type="text/css" href="styles/userStyle.css">
 </head>
 <body>
 <h1>UserDAO</h1>
@@ -16,8 +17,7 @@ $errorMessage = array();
 if (isset($_POST['userID']) ||
     isset($_POST['firstName']) ||
     isset($_POST['lastName']) ||
-    isset($_POST['email']) ||
-    isset($_POST['createdTime'])) {
+    isset($_POST['email'])) {
 
         if (!is_numeric($_POST['userID']) || $_POST['userID'] == ""){
             $hasError = true;
@@ -39,12 +39,8 @@ if (isset($_POST['userID']) ||
         $hasError = true;
     }
 
-    if ($_POST['createdTime'] == "") {
-        $errorMessage['createdTimeError'] = "请输入创建时间";
-        $hasError = true;
-    }
     if (!$hasError) {
-        $user = new user($_POST['userID'], $_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['createdTime']);
+        $user = new user($_POST['userID'], $_POST['firstName'], $_POST['lastName'], $_POST['email']);
         $addSuccess = $userDAO->addUser($user);
         echo '<h3>' . $addSuccess . '</h3>';
     }
@@ -55,18 +51,16 @@ if (isset($_GET['deleted'])) {
         echo '<h3>员工以删除</h3>';
     }
 }
+$userDAO = new UserDAO();
+$maxUserId = $userDAO->getMaxUserId();
 ?>
-<form name="addUserForm" method="post" action="index_user.php">
+<form name="addUserForm" method="post" action="user_manage.php">
     <table>
         <tr>
             <td>UserID</td>
             <td>
-                <input type="text" name="userID" id="userID">
-                <?php
-                if (isset($errorMessage['userIdError'])) {
-                    echo '<span style=\'color:red\'>' . $errorMessage['userIdError'] . '</span>';
-                }
-                ?>
+                <input type="text" name="userID" id="userID" readonly
+                       value="<?php echo $maxUserId; ?>"
             </td>
         </tr>
         <tr>
@@ -103,17 +97,6 @@ if (isset($_GET['deleted'])) {
             </td>
         </tr>
         <tr>
-            <td>createdTime</td>
-            <td>
-                <input type="text" name="createdTime" id="createdTime">
-                <?php
-                if (isset($errorMessage['createdTimeError'])) {
-                    echo '<span style=\'color:red\'>' . $errorMessage['createdTimeError'] . '</span>';
-                }
-                ?>
-            </td>
-        </tr>
-        <tr>
             <td><input type="submit" name="btnSubmit" id="btnSubmit" value="Add User"></td>
             <td><input type="reset" name="btnReset" id="btnReset" value="Reset"></td>
         </tr>
@@ -126,7 +109,7 @@ if (isset($_GET['deleted'])) {
         echo '<tr><th>UserID</th><th>firstName</th><th>lastName</th><th>Email</th><th>createdTime</th></tr>';
         foreach ($user as $users) {
             echo '<tr>';
-            echo '<td><a href=\'edit.php?userID=' . $users->getUserId() . '\'>' . $users->getUserId() . '</a></td>';
+            echo '<td><a href=\'edit_user.php?userID=' . $users->getUserId() . '\'>' . $users->getUserId() . '</a></td>';
             echo '<td>' . $users->getFirstName() . '</td>';
             echo '<td>' . $users->getLastName() . '</td>';
             echo '<td>' . $users->getEmail() . '</td>';
