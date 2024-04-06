@@ -16,7 +16,7 @@ if (!isset($_GET['userID']) || !is_numeric($_GET['userID'])) {
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta http-equiv="X-UA-Compatible" content="ie=edge">
             <title>Document - <?php echo $user->getFirstName() . ' ' . $user->getLastName(); ?></title>
-            <script type="text/javascript" src="script/script.js"></script>
+            <script type="text/javascript" src="scripts/script.js"></script>
         </head>
         <body>
         <?php
