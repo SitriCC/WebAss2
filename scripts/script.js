@@ -6,5 +6,10 @@ function delBlog(currentBlogID) {
     }
 }
 
-
+function delUser(currentUserID) {
+    if (confirm('Are you sure you want to delete this user?')) {
+        location.replace('process.php?action=delete&userID=' + currentUserID);
+        alert(window.location.href.split("=")[1]+" Deleted Successfully!\nJump Back to user Page...");
+    }
+}
 
