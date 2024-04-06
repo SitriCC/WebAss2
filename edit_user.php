@@ -2,7 +2,7 @@
 require_once('./dao/userDAO.php');
 
 if (!isset($_GET['userID']) || !is_numeric($_GET['userID'])) {
-    header("Location: index_user.php");
+    header("Location: user_manage.php");
     exit;
 } else {
     $userDAO = new UserDAO();
@@ -22,7 +22,7 @@ if (!isset($_GET['userID']) || !is_numeric($_GET['userID'])) {
         <?php
         if(isset($_GET['recordsUpdated'])){
             if(is_numeric($_GET['recordsUpdated'])){
-                echo '<h3 id="success_edit"> '. $_GET['recordsUpdated']. ' Blog Record Updated.</h3>';
+                echo '<h3 id="success_edit"> '. $_GET['recordsUpdated']. ' User Updated.</h3>';
             }
         }
         if(isset($_GET['missingFields'])){
@@ -59,23 +59,16 @@ if (!isset($_GET['userID']) || !is_numeric($_GET['userID'])) {
                     </td>
                 </tr>
                 <tr>
-                    <td>createdTime</td>
-                    <td>
-                        <input type="text" name="createdTime" id="createdTime"
-                               value="<?php echo $user->getCreatedTime() ?>">
-                    </td>
-                </tr>
-                <tr>
                     <td><input type="submit" name="btnSubmit" id="btnSubmit" value="Update User"></td>
                     <td><button onclick="delUser(document.getElementById('userID').value)" id="btnDelete" name="btnDelete">Delete</td>
                 </tr>
             </table>
         </form>
-        <h4><a href="index_user.php">返回主页</a></h4>
+        <h4><a href="user_manage.php">返回主页</a></h4>
         </body>
         </html>
     <?php } else {
-        header("Location: index_user.php");
+        header("Location: user_manage.php");
         exit;
     }
 
