@@ -19,8 +19,7 @@ CREATE TABLE Blogs (
                        title VARCHAR(255) ,
                        content TEXT ,
                        createdTime DATETIME DEFAULT CURRENT_TIMESTAMP,
-                       updatedTime DATETIME ON UPDATE CURRENT_TIMESTAMP,
-                       FOREIGN KEY (userID) REFERENCES Users(userID)
+                       updatedTime DATETIME ON UPDATE CURRENT_TIMESTAMP
 );
 
 CREATE TABLE Comments (
@@ -28,7 +27,5 @@ CREATE TABLE Comments (
                           blogID INT,
                           userID INT,
                           comment TEXT ,
-                          createdTime DATETIME DEFAULT CURRENT_TIMESTAMP,
-                          FOREIGN KEY (blogID) REFERENCES Blogs(blogID),
-                          FOREIGN KEY (userID) REFERENCES Users(userID)
+                          createdTime DATETIME DEFAULT CURRENT_TIMESTAMP
 );

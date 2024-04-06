@@ -12,15 +12,29 @@ class blog
 
     /**
      * @param $blogID
+     * @param $userID
      * @param $title
      * @param $content
+     * @param $createdTime
+     * @param $updatedTime
      */
-    public function __construct($blogID, $title, $content)
+    public function __construct($blogID, $title, $content, $createdTime, $updatedTime)
     {
         $this->blogID = $blogID;
         $this->title = $title;
         $this->content = $content;
+        $this->createdTime = $createdTime;
+        $this->updatedTime = $updatedTime;
     }
+
+
+
+    /**
+     * @param $blogID
+     * @param $title
+     * @param $content
+     */
+
 
     /**
      * @param $blogID

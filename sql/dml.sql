@@ -5,11 +5,11 @@ INSERT INTO Users (firstName, lastName, email) VALUES ('Michael', 'Brown', 'mich
 INSERT INTO Users (firstName, lastName, email) VALUES ('Sarah', 'Davis', 'sarahdavis@example.com');
 
 
-INSERT INTO Blogs (userID, title, content) VALUES (1, 'My First blog', 'This is the content of my first blog.');
-INSERT INTO Blogs (userID, title, content) VALUES (2, 'My Second blog', 'This is the content of my second blog.');
-INSERT INTO Blogs (userID, title, content) VALUES (3, 'My Third blog', 'This is the content of my third blog.');
-INSERT INTO Blogs (userID, title, content) VALUES (4, 'My Fourth blog', 'This is the content of my fourth blog.');
-INSERT INTO Blogs (userID, title, content) VALUES (5, 'My Fifth blog', 'This is the content of my fifth blog.');
+INSERT INTO Blogs (userID, title, content) VALUES (1, 'First blog', 'This is   First blog  of my first blogThis is the content of my first blogThis is the content of my first blogThis is the content of my first blogThis is the content of my first blogThis is the content of my first blogThis is the content of my first blogThis is the content of my first blogThis is the content of my first blogThis is the content of my first blog.');
+INSERT INTO Blogs (userID, title, content) VALUES (2, 'Second blog', 'This is  Second blo  ofThis is the content ofThis is the content ofThis is the content ofThis is the content ofThis is the content of my second blog.');
+INSERT INTO Blogs (userID, title, content) VALUES (3, 'Third blog', 'This is   Third blog  of my thirhe content of my thirhe content of my thirhe content of my thirhe content of my thirhe content of my third blog.');
+INSERT INTO Blogs (userID, title, content) VALUES (4, 'Fourth blog', 'This is  Fourth blo  of mys is the content of mys is the content of mys is the content of mys is the content of my fourth blog.');
+INSERT INTO Blogs (userID, title, content) VALUES (5, 'Fifth blog', 'This is   Fifth blog  of my fifth blogis the content of my fifth blogis the content of my fifth blogis the content of my fifth blogis the content of my fifth blogis the content of my fifth blogis the content of my fifth blogis the content of my fifth blog.');
 
 
 INSERT INTO Comments (BlogID, userID, comment) VALUES (1, 2, 'Great blog!');

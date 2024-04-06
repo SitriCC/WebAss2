@@ -4,61 +4,55 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Blogs</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="scripts/script.js"></script>
+
 </head>
 <body>
 <h1>Blogs</h1>
 <?php
 try{
 $blogDAO = new blogDAO();
-//Tracks errors with the form fields
 $hasError = false;
-//Array for our error messages
 $errorMessages = Array();
 
 if(isset($_POST['blogID']) ||
     isset($_POST['title']) ||
-    isset($_POST['title'])){
+    isset($_POST['content'])){
 
-    //We know they are set, so let's check for values
-    //EmployeeID should be a number
     if(!is_numeric($_POST['blogID']) || $_POST['blogID'] == ""){
         $hasError = true;
-        $errorMessages['blogIDError'] = 'Please enter a numeric Employee ID.';
+        $errorMessages['blogIDError'] = 'Please enter a numeric Blog ID.';
     }
 
     if($_POST['title'] == ""){
-        $errorMessages['titleError'] = "Please enter a first name.";
+        $errorMessages['titleError'] = "Please enter a Title.";
         $hasError = true;
     }
 
-    if($_POST['title'] == ""){
-        $errorMessages['titleError'] = "Please enter a last name.";
+    if($_POST['content'] == ""){
+        $errorMessages['contentError'] = "Please enter a Content.";
         $hasError = true;
     }
 
     if(!$hasError){
-        $blog = new blog($_POST['blogID'], $_POST['title'], $_POST['title']);
+        $currentTime = date('Y-m-d H:i:s');
+        $blog = new blog($_POST['blogID'], $_POST['title'], $_POST['content'], $currentTime, $currentTime);
         $addSuccess = $blogDAO->addBlog($blog);
-        echo '<h3>' . $addSuccess . '</h3>';
+        echo '<h3 id="success_post">' . $addSuccess . '</h3>';
     }
 }
-
-//The code that deletes a user directs them
-//back to this page with a parameter in the
-//URL called 'deleted'. If this is set,
-//display a confirmation message.
 if(isset($_GET['deleted'])){
     if($_GET['deleted'] == true){
-        echo '<h3>blog Deleted</h3>';
+        echo '<h3 id="success_del">blog Deleted Success</h3>';
     }
 }
 
-
 ?>
-<form name="addEmployee" method="post" action="index.php">
+<form name="addBlog" method="post" action="index.php">
     <table>
         <tr>
-            <td>Employee ID:</td>
+            <td>BlogID:</td>
             <td><input type="text" name="blogID" id="blogID">
                 <?php
                 //If there was an error with the blogID field, display the message
@@ -68,7 +62,7 @@ if(isset($_GET['deleted'])){
                 ?></td>
         </tr>
         <tr>
-            <td>First Name:</td>
+            <td>Title:</td>
             <td><input name="title" type="text" id="title">
                 <?php
                 //If there was an error with the title field, display the message
@@ -79,18 +73,23 @@ if(isset($_GET['deleted'])){
             </td>
         </tr>
         <tr>
-            <td>Last Name:</td>
-            <td><input type="text" name="title" id="title">
-                <?php
-                //If there was an error with the title field, display the message
-                if(isset($errorMessages['titleError'])){
-                    echo '<span style=\'color:red\'>' . $errorMessages['titleError'] . '</span>';
-                }
-                ?>
+            <td>Content:</td>
+            <td>
+
+
+                <textarea id="content" name="content" rows="20" cols="100">
+                                   <?php
+                                   //If there was an error with the title field, display the message
+                                   if(isset($errorMessages['contentError'])){
+                                       echo '<span style=\'color:red\'>' . $errorMessages['contentError'] . '</span>';
+                                   }
+                                   ?>
+                         </textarea>
+
             </td>
         </tr>
         <tr>
-            <td><input type="submit" name="btnSubmit" id="btnSubmit" value="Add Employee"></td>
+            <td><input type="submit" name="btnSubmit" id="btnSubmit" value="Post Blog"></td>
             <td><input type="reset" name="btnReset" id="btnReset" value="Reset"></td>
         </tr>
     </table>
@@ -98,17 +97,15 @@ if(isset($_GET['deleted'])){
     <?php
     $blogs = $blogDAO->getBlogs();
     if($blogs){
-        //We only want to output the table if we have employees.
-        //If there are none, this code will not run.
         echo '<table border=\'1\'>';
-        echo '<tr><th>blog ID</th><th>Title</th><th>Content</th></tr>';
+        echo '<tr><th>blog ID</th><th>Title</th><th>Content</th><th>CreatedTime</th><th>UpdatedTime</th></tr>';
         foreach($blogs as $postBlg){
             echo '<tr>';
-            echo '<td><a href=\'edit_postbolg.php?blogID='.
-                $postBlg->getBlogId() . '\'>' .
-                $postBlg->getBlogId() . '</a></td>';
+            echo '<td><a href=\'edit_blog.php?blogID='. $postBlg->getBlogId() . '\'>' . $postBlg->getBlogId() . '</a></td>';
             echo '<td>' . $postBlg->getTitle() . '</td>';
             echo '<td>' . $postBlg->getContent() . '</td>';
+            echo '<td>' . $postBlg->getCreatedTime() . '</td>';
+            echo '<td>' . $postBlg->getUpdatedTime() . '</td>';
             echo '</tr>';
         }
     }
