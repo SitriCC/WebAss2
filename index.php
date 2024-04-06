@@ -6,10 +6,11 @@
     <title>Blogs</title>
     <link rel="stylesheet" href="styles/style.css">
     <script src="scripts/script.js"></script>
-
 </head>
 <body>
-<h1>Blogs</h1>
+<?php
+include "header.php"
+?>
 <?php
 try{
 $blogDAO = new blogDAO();
@@ -44,7 +45,7 @@ if(isset($_POST['blogID']) ||
 }
 if(isset($_GET['deleted'])){
     if($_GET['deleted'] == true){
-        echo '<h3 id="success_del">blog Deleted Success</h3>';
+        echo '<h3 id="success_del">Blog Deleted Success</h3>';
     }
 }
 
@@ -88,9 +89,9 @@ if(isset($_GET['deleted'])){
 
             </td>
         </tr>
-        <tr>
-            <td><input type="submit" name="btnSubmit" id="btnSubmit" value="Post Blog"></td>
-            <td><input type="reset" name="btnReset" id="btnReset" value="Reset"></td>
+        <tr class="form__box">
+            <td><input type="submit" class="form__btn" name="btnSubmit" id="btnSubmit" value="Post Blog"></td>
+            <td><input type="reset" class="form__btn" name="btnReset" id="btnReset" value="Reset"></td>
         </tr>
     </table>
 
@@ -111,12 +112,13 @@ if(isset($_GET['deleted'])){
     }
 
     }catch(Exception $e){
-        //If there were any database connection/sql issues,
-        //an error message will be displayed to the user.
         echo '<h3>Error on page.</h3>';
         echo '<p>' . $e->getMessage() . '</p>';
     }
     ?>
 </form>
+<?php
+include "footer.php"
+?>
 </body>
 </html>

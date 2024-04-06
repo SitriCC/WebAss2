@@ -1,3 +1,7 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url(https://fonts.googleapis.com/css?family=Merriweather);
+
+
 #success_post {
     text-align: center;
 }
@@ -6,4 +10,70 @@
 }
 #success_del {
     text-align: center;
+}
+
+
+body, h1, h2, h3, p {
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    padding-bottom: 100px; /* Push footer down */
+}
+
+
+.blog-header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden; /* Clearfix for floated elements */
+}
+
+
+.blog-nav {
+    float: right;
+}
+
+.blog-nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: inline-block;
+}
+
+.blog-nav a:hover {
+    background-color: #575757;
+    transition: background-color 0.3s;
+}
+
+.blog-footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.blog-footer .container {
+    padding: 0 20px;
+}
+header,
+footer {
+    background-color: burlywood;
+    padding: 5px 5px;
+    color: rgb(16, 16, 107);
 }

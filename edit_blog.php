@@ -21,7 +21,9 @@ if(!isset($_GET['blogID']) || !is_numeric($_GET['blogID'])){
             <script type="text/javascript" src="scripts/script.js"></script>
         </head>
         <body>
-
+        <?php
+        include "header.php"
+        ?>
         <?php
         if(isset($_GET['recordsUpdated'])){
             if(is_numeric($_GET['recordsUpdated'])){
@@ -64,6 +66,9 @@ if(!isset($_GET['blogID']) || !is_numeric($_GET['blogID'])){
             </table>
         </form>
         <h4><a href="index.php">Back to main page</a></h4>
+        <?php
+        include "footer.php"
+        ?>
         </body>
         </html>
     <?php } else{
