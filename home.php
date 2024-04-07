@@ -55,11 +55,11 @@ if(isset($_GET['deleted'])){
     $blogs = $blogDAO->getBlogs();
     if($blogs){
         echo '<table class="form_showblog">';
-        echo '<tr><th>Title</th><th>Content</th><th>CreatedTime</th><th>UpdatedTime</th></tr>';
+        echo '<tr><th>ImageID</th><th>Title</th><th>Content</th><th>CreatedTime</th><th>UpdatedTime</th></tr>';
         foreach($blogs as $postBlg){
             echo '<tr>';
+            echo '<td><img src="images/' . $postBlg->getImageUrl() . '" alt="ImageUrl ' . $postBlg->getBlogId() . '" style="width:100px; height:100px;"></td>';
             echo '<td><a href=\'edit_blog.php?blogID='. $postBlg->getBlogId() . '\'>' . $postBlg->getTitle() . '</a></td>';
-//            echo '<td>' . $postBlg->getTitle() . '</td>';
             echo '<td>' . $postBlg->getContent() . '</td>';
             echo '<td>' . $postBlg->getCreatedTime() . '</td>';
             echo '<td>' . $postBlg->getUpdatedTime() . '</td>';
