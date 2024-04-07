@@ -5,8 +5,12 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="styles/login.css">
+    <script src="scripts/script.js"></script>
 </head>
 <body>
+<?php
+include "header.php"
+?>
 <?php
 try {
 $userDAO = new UserDAO();
