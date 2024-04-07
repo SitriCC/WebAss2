@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('.create-account');
     const emailInput = document.getElementById('email');
-    const userNameInput = document.getElementById('user-name');
+    const userNameInput = document.getElementById('userName');
     const passwordInput = document.getElementById('password');
     const password2Input = document.getElementById('password2');
 

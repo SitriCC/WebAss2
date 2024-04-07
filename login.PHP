@@ -7,19 +7,20 @@
     <script src="scripts/script.js"></script>
 </head>
 <body>
-
+<?php include "header.php"; ?>
 <div class="login">
     <div class="log-text">
         <h2>Login to High Blog</h2>
-        <label for="user-name">User Name</label>
-        <input id="user-name" type="text">
-        <label for="user-password">Pass Word</label>
-        <input id="user-password" type="password">
-        <button type="submit" id="submit">Login</button>
+        <form action="login_check.php" method="post">
+            <label for="user-name">User Name</label>
+            <input id="user-name" name="userName" type="text" required>
+            <label for="user-password">Password</label>
+            <input id="user-password" name="passWord" type="password" required>
+            <button type="submit" id="submit">Login</button>
+        </form>
         <a href="regist.php" class="create">Register</a>
     </div>
 </div>
-
 
 
 <?php

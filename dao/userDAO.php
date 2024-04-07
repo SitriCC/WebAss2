@@ -134,5 +134,21 @@ class userDAO extends abstractDAO
             return null;
         }
     }
+
+    public function authenticateUser($userName, $passWord) {
+        $query = "SELECT userID FROM Users WHERE userName = ? AND passWord = ?";
+        $stmt = $this->mysqli->prepare($query);
+        $stmt->bind_param('ss', $userName, $passWord);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows == 1) {
+            // username and password are ture;
+            return true;
+        } else {
+            // username and password are false;
+            return false;
+        }
+    }
+
 }
 
