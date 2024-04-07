@@ -65,7 +65,6 @@ if(!isset($_GET['blogID']) || !is_numeric($_GET['blogID'])){
                 </tr>
             </table>
         </form>
-        <h4><a href="index.php">Back to main page</a></h4>
         <?php
         include "footer.php"
         ?>
