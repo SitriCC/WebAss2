@@ -18,6 +18,7 @@ CREATE TABLE Blogs (
                        userID INT,
                        title VARCHAR(255) ,
                        content TEXT ,
+                       imageUrl VARCHAR(255) ,
                        createdTime DATETIME DEFAULT CURRENT_TIMESTAMP,
                        updatedTime DATETIME ON UPDATE CURRENT_TIMESTAMP
 );

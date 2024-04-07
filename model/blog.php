@@ -5,6 +5,7 @@ class blog
     private $userID;
     private $title;
     private $content;
+    private $imageUrl;
     private $createdTime;
     private $updatedTime;
     //user is a property to hold author's info
@@ -18,42 +19,17 @@ class blog
      * @param $createdTime
      * @param $updatedTime
      */
-    public function __construct($blogID, $title, $content, $createdTime, $updatedTime)
+    public function __construct($blogID, $title, $content, $imageUrl, $createdTime, $updatedTime)
     {
         if ($blogID !== null) {
             $this->blogID = $blogID;
         }
         $this->title = $title;
         $this->content = $content;
+        $this->imageUrl = $imageUrl;
         $this->createdTime = $createdTime;
         $this->updatedTime = $updatedTime;
     }
-
-
-
-    /**
-     * @param $blogID
-     * @param $title
-     * @param $content
-     */
-
-
-    /**
-     * @param $blogID
-     * @param $title
-     * @param $content
-     * @param $createdTime
-     * @param $updatedTime
-     * @param $user
-     */
-/*    public function __construct($blogID, $title, $content, $createdTime, $updatedTime, $user) {
-        $this->blogID = $blogID;
-        $this->title = $title;
-        $this->content = $content;
-        $this->createdTime = $createdTime;
-        $this->updatedTime = $updatedTime;
-        $this->user = $user; // user object
-    }*/
 
     /**
      * @return mixed
@@ -122,6 +98,22 @@ class blog
     /**
      * @return mixed
      */
+    public function getImageUrl()
+    {
+        return $this->imageUrl;
+    }
+
+    /**
+     * @param mixed $imageUrl
+     */
+    public function setImageUrl($imageUrl)
+    {
+        $this->imageUrl = $imageUrl;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getCreatedTime()
     {
         return $this->createdTime;
@@ -151,21 +143,8 @@ class blog
         $this->updatedTime = $updatedTime;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
 
-    /**
-     * @param mixed $user
-     */
-    public function setUser($user)
-    {
-        $this->user = $user;
-    }
+
 
 
 

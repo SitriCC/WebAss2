@@ -130,3 +130,7 @@ input[type="submit"]:hover {
 }
 
 <!-- style for contact page end-->
+.blog-image {
+ width: 100px;
+ height: 100px;
+}

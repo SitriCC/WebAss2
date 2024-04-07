@@ -1,38 +1,39 @@
-<?php
-include "header.php";
-?>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Blogs</title>
-    <link rel="stylesheet" href="styles/style.css">
-    <script src="scripts/script.js"></script>
+    <meta charset="UTF-8">
+    <title>Travel Blogger & Vagabond</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
+<body>
+<header class="site-header">
+    <h1>Travel Blogger & Vagabond. Headed to a new place, always.</h1>
+</header>
+ass="posts-grid">
+    <?php
+    include 'dao/blogDAO.php';
+    $blogDAO = new BlogDAO();
+    $blog_posts = $blogDAO->getBlogs();
 
-<section class="contact-section">
-    <div class="container">
-        <h2>Contact Us</h2>
-        <p>If you have any questions or just want to get in touch, use the form below!</p>
-        <form action="process_contact.php" method="post">
-            <div class="form-group">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Send Message">
-            </div>
-        </form>
-    </div>
+    if (!empty($blog_posts)) {
+        foreach ($blog_posts as $post) {
+            echo '<article class="post">';
+            echo '<img src="' . htmlspecialchars($post['image_url'])
+                . '" alt="' . htmlspecialchars($post['title']) . '">';
+            echo '<h2>' . htmlspecialchars($post['title']) . '</h2>';
+            echo '<p>' . htmlspecialchars($post['excerpt']) . '</p>';
+            echo '<div class="post-meta">';
+            echo '<span>' . htmlspecialchars($post['date']) . '</span> | ';
+            echo '<span>' . htmlspecialchars($post['category']) . '</span>';
+            echo '</div>';
+            echo '</article>';
+        }
+    } else {
+        echo '<p>No blog posts found.</p>';
+    }
+    ?>
 </section>
 
-<?php
-include "footer.php";
-?>
+<?php include 'footer.php'; ?>
+</body>
+</html>

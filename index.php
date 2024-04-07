@@ -74,18 +74,18 @@ if(isset($_GET['deleted'])){
             <td><input type="submit" class="form__btn" name="btnSubmit" id="btnSubmit" value="Post Blog"></td>
             <td><input type="reset" class="form__btn" name="btnReset" id="btnReset" value="Reset"></td>
         </tr>
+
     </table>
 
     <?php
     $blogs = $blogDAO->getBlogs();
     if($blogs){
         echo '<table class="form_showblog">';
-        echo '<tr><th>Title</th><th>Content</th><th>CreatedTime</th><th>UpdatedTime</th></tr>';
+        echo '<tr><th>ImageID</th><th>Title</th><th>Content</th><th>CreatedTime</th><th>UpdatedTime</th></tr>';
         foreach($blogs as $postBlg){
             echo '<tr>';
-//            echo '<td><a href=\'edit_blog.php?blogID='. $postBlg->getBlogId() . '\'>' . $postBlg->getBlogId() . '</a></td>';
+            echo '<td><img src="images/' . $postBlg->getImageUrl() . '" alt="ImageUrl ' . $postBlg->getBlogId() . '" style="width:100px; height:100px;"></td>';
             echo '<td><a href=\'edit_blog.php?blogID='. $postBlg->getBlogId() . '\'>' . $postBlg->getTitle() . '</a></td>';
-//            echo '<td>' . $postBlg->getTitle() . '</td>';
             echo '<td>' . $postBlg->getContent() . '</td>';
             echo '<td>' . $postBlg->getCreatedTime() . '</td>';
             echo '<td>' . $postBlg->getUpdatedTime() . '</td>';
