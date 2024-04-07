@@ -5,12 +5,8 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="styles/login.css">
-    <script src="scripts/script.js"></script>
 </head>
 <body>
-<?php
-include "header.php"
-?>
 <?php
 try {
 $userDAO = new UserDAO();
@@ -49,11 +45,6 @@ if (isset($_GET['deleted'])) {
 }
 $userDAO = new UserDAO();
 $maxUserId = $userDAO->getMaxUserId();
-
-}catch(Exception $e){
-echo '<h3>Error on page.</h3>';
-echo '<p>' . $e->getMessage() . '</p>';
-}
 ?>
 <div class="login">
     <div class="log-text">
@@ -66,11 +57,5 @@ echo '<p>' . $e->getMessage() . '</p>';
         <a href="regist.php" class="create">Register</a>
     </div>
 </div>
-
-
-</form>
-<?php
-include "footer.php"
-?>
 </body>
-</html>
+</html><?php
