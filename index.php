@@ -84,7 +84,7 @@ if(isset($_GET['deleted'])){
         echo '<tr><th>ImageID</th><th>Title</th><th>Content</th><th>CreatedTime</th><th>UpdatedTime</th></tr>';
         foreach($blogs as $postBlg){
             echo '<tr>';
-            echo '<td><img src="images/' . $postBlg->getImageUrl() . '" alt="ImageUrl ' . $postBlg->getBlogId() . '" style="width:100px; height:100px;"></td>';
+            echo '<td><img src="images/' . $postBlg->getImageUrl() . '" alt="ImageUrl ' . $postBlg->getBlogId() . '" style="width:500px; height:400px;"></td>';
             echo '<td><a href=\'edit_blog.php?blogID='. $postBlg->getBlogId() . '\'>' . $postBlg->getTitle() . '</a></td>';
             echo '<td>' . $postBlg->getContent() . '</td>';
             echo '<td>' . $postBlg->getCreatedTime() . '</td>';
