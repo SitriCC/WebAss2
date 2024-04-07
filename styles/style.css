@@ -77,3 +77,56 @@ footer {
     padding: 5px 5px;
     color: rgb(16, 16, 107);
 }
+
+.form_showblog{
+    border: lightgreen;
+}
+<!-- style for contact page start-->
+
+     .contact-section {
+         padding: 20px;
+         background: #f9f9f9;
+     }
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+}
+
+input[type="submit"] {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #555;
+}
+
+<!-- style for contact page end-->

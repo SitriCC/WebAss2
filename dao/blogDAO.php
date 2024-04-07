@@ -46,37 +46,19 @@ class blogDAO extends abstractDAO{
 
 
     public function addBlog($blog){
-        if(!is_numeric($blog->getBlogID())){
-            return 'BlogID must be a number.';
-        }
         if(!$this->mysqli->connect_errno){
-            $query = 'INSERT INTO Blogs (blogID, title, content,createdTime,updatedTime) VALUES (?,?,?,?,?)';
+            $query = 'INSERT INTO Blogs (title, content,createdTime,updatedTime) VALUES (?,?,?,?)';
             $stmt = $this->mysqli->prepare($query);
-
-
-            // Assign the results to variables
-            $blogID = $blog->getBlogID();
             $title = $blog->getTitle();
             $content = $blog->getContent();
             $createdTime = $blog->getCreatedTime();
             $updatedTime = $blog->getUpdatedTime();
-
-            // Bind the variables to the statement
-            $stmt->bind_param('issss', $blogID, $title, $content, $createdTime, $updatedTime);
-//            $stmt->bind_param('issss',
-//                $blog->getBlogID(),
-//                $blog->getTitle(),
-//                $blog->getContent(),
-//                $blog->getCreatedTime(),
-//                $blog->getUpdatedTime()
-//            );
+            $stmt->bind_param('ssss',  $title, $content, $createdTime, $updatedTime);
             //Execute the statement
             $stmt->execute();
-
             if($stmt->error){
                 return $stmt->error;
             } else {
-//                return $blog->getTitle() . ' post successfully!';
                 return $title . ' <br>post successfully!';
             }
         } else {

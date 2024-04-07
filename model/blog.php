@@ -20,7 +20,9 @@ class blog
      */
     public function __construct($blogID, $title, $content, $createdTime, $updatedTime)
     {
-        $this->blogID = $blogID;
+        if ($blogID !== null) {
+            $this->blogID = $blogID;
+        }
         $this->title = $title;
         $this->content = $content;
         $this->createdTime = $createdTime;
