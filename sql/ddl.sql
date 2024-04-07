@@ -23,10 +23,3 @@ CREATE TABLE Blogs (
                        updatedTime DATETIME ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE TABLE Comments (
-                          commentsID INT AUTO_INCREMENT PRIMARY KEY,
-                          blogID INT,
-                          userID INT,
-                          comment TEXT ,
-                          createdTime DATETIME DEFAULT CURRENT_TIMESTAMP
-);
