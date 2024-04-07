@@ -7,8 +7,8 @@ USE cst8285;
 
 CREATE TABLE Users (
                        userID INT AUTO_INCREMENT PRIMARY KEY,
-                       firstName VARCHAR(50) ,
-                       lastName VARCHAR(50) ,
+                       userName VARCHAR(50) ,
+                       passWord VARCHAR(50) ,
                        email VARCHAR(255) ,
                        createdTime DATETIME DEFAULT CURRENT_TIMESTAMP
 );

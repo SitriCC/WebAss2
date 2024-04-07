@@ -15,7 +15,7 @@ if (!isset($_GET['userID']) || !is_numeric($_GET['userID'])) {
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta http-equiv="X-UA-Compatible" content="ie=edge">
-            <title>Document - <?php echo $user->getFirstName() . ' ' . $user->getLastName(); ?></title>
+            <title>Document - <?php echo $user->getUserName() . ' ' . $user->getPassWord(); ?></title>
             <script type="text/javascript" src="scripts/script.js"></script>
         </head>
         <body>
@@ -41,15 +41,15 @@ if (!isset($_GET['userID']) || !is_numeric($_GET['userID'])) {
                     </td>
                 </tr>
                 <tr>
-                    <td>firstName</td>
+                    <td>userName</td>
                     <td>
-                        <input type="text" name="firstName" id="firstName" value="<?php echo $user->getFirstName() ?>">
+                        <input type="text" name="userName" id="userName" value="<?php echo $user->getUserName() ?>">
                     </td>
                 </tr>
                 <tr>
-                    <td>lastName</td>
+                    <td>passWord</td>
                     <td>
-                        <input type="text" name="lastName" id="lastName" value="<?php echo $user->getLastName() ?>">
+                        <input type="password" name="passWord" id="passWord" value="<?php echo $user->getPassWord() ?>">
                     </td>
                 </tr>
                 <tr>

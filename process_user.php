@@ -6,21 +6,21 @@ if (isset($_GET['action'])) {
     if ($_GET['action'] == "edit") {
         // 确保所有必要的字段都已传递和设置
         if (isset($_POST['userID']) &&
-            isset($_POST['firstName']) &&
-            isset($_POST['lastName']) &&
+            isset($_POST['userName']) &&
+            isset($_POST['passWord']) &&
             isset($_POST['email'])){
 
             // 检查员工ID是否为数字，且名字和姓氏字段不为空
             if (is_numeric($_POST['userID']) &&
-                $_POST['firstName'] != "" &&
-                $_POST['lastName'] != "" &&
+                $_POST['userName'] != "" &&
+                $_POST['passWord'] != "" &&
                 $_POST['email'] != "") {
 
                 // 实例化employeeDAO类，以便使用其方法
                 $userDAO = new userDAO();
                 // 调用editEmployee方法编辑员工信息，并获取操作结果
                 $result = $userDAO->updateUser($_POST['userID'],
-                    $_POST['firstName'], $_POST['lastName'], $_POST['email']);
+                    $_POST['userName'], $_POST['passWord'], $_POST['email']);
 
                 // 根据操作结果重定向到不同的页面
                 if ($result > 0) {

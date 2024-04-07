@@ -2,22 +2,22 @@
 class user
 {
     private $userID;
-    private $firstName;
-    private $lastName;
+    private $userName;
+    private $passWord;
     private $email;
     private $createdTime;
 
     /**
      * @param $userID
-     * @param $firstName
-     * @param $lastName
+     * @param $userName
+     * @param $passWord
      * @param $email
      * @param $createdTime
      */
-    public function __construct($userID, $firstName, $lastName, $email, $createdTime = null) {
+    public function __construct($userID, $userName, $passWord, $email, $createdTime = null) {
         $this->userID = $userID;
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
+        $this->userName = $userName;
+        $this->passWord = $passWord;
         $this->email = $email;
         if ($createdTime !== null) {
             $this->createdTime = $createdTime;
@@ -43,33 +43,33 @@ class user
     /**
      * @return mixed
      */
-    public function getFirstName()
+    public function getUserName()
     {
-        return $this->firstName;
+        return $this->userName;
     }
 
     /**
-     * @param mixed $firstName
+     * @param mixed $userName
      */
-    public function setFirstName($firstName)
+    public function setUserName($userName)
     {
-        $this->firstName = $firstName;
+        $this->userName = $userName;
     }
 
     /**
      * @return mixed
      */
-    public function getLastName()
+    public function getPassWord()
     {
-        return $this->lastName;
+        return $this->passWord;
     }
 
     /**
-     * @param mixed $lastName
+     * @param mixed $passWord
      */
-    public function setLastName($lastName)
+    public function setPassWord($passWord)
     {
-        $this->lastName = $lastName;
+        $this->passWord = $passWord;
     }
 
     /**
