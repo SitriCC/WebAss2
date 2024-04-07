@@ -65,7 +65,7 @@ if(isset($_FILES['uploadimage'])) {
     <input type="file" id="imageUrl" name="imageUrl">
 
     <label for="Content">Content:</label>
-    <textarea id="content" name="content" placeholder="Blog Paragraph..." rows="20" >
+    <textarea id="content" name="content" placeholder="Blog Paragraph..." rows="10" cols="10" >
            <?php
            if(isset($errorMessages['contentError'])){
                echo '<span style=\'color:red\'>' . $errorMessages['contentError'] . '</span>';

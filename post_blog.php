@@ -59,15 +59,13 @@ if(isset($_GET['deleted'])){
         <tr>
             <td>Content:</td>
             <td>
-
-
                 <textarea id="content" name="content" rows="20" cols="100">
                                    <?php
                                    if(isset($errorMessages['contentError'])){
                                        echo '<span style=\'color:red\'>' . $errorMessages['contentError'] . '</span>';
                                    }
                                    ?>
-                         </textarea>
+                </textarea>
 
             </td>
         </tr>

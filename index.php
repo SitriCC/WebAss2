@@ -18,10 +18,10 @@ $blogDAO = new blogDAO();
     if($blogs){
         echo '<table class="form_showblog">';
         foreach($blogs as $postBlg){
-            echo '<tr>';
-            echo '<td><img src="' . $postBlg->getImageUrl() . '" alt="ImageUrl ' . $postBlg->getBlogId() . '" style="width:50%; height:40%;"></td>';
-            echo '<td><tr><td><a href=\'edit_blog.php?blogID='. $postBlg->getBlogId() . '\'>' . $postBlg->getTitle() . '</a></td></tr><tr><td>' . $postBlg->getContent() . '</td></tr></td>';
-            echo '<td>' . $postBlg->getCreatedTime() . '</td>';
+            echo '<tr style="text-align: center;">';
+            echo '<td><img src="' . $postBlg->getImageUrl() . '" alt="ImageUrl ' . $postBlg->getBlogId() . '" style="width:50%; height:20%; padding-left:50px; padding-right: 50px; padding-bottom:2px; padding-top:20px; text-align: center;"></td>';
+            echo '<td><tr><td style="text-align: center;"><a href=\'edit_blog.php?blogID='. $postBlg->getBlogId() . '\'>' . $postBlg->getTitle() . '</a></td></tr><tr><td style="padding-left:25%; padding-right: 25%; text-align: left;">' . $postBlg->getContent() . '</td></tr></td>';
+            echo '<td style="text-align: center;">' . $postBlg->getCreatedTime() . '</td>';
             echo '</tr>';
         }
     }
@@ -31,7 +31,6 @@ $blogDAO = new blogDAO();
         echo '<p>' . $e->getMessage() . '</p>';
     }
     ?>
-<!--</form>-->
 <?php
 include "footer.php"
 ?>
