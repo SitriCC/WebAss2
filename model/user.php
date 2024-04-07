@@ -22,6 +22,7 @@ class user
         if ($createdTime !== null) {
             $this->createdTime = $createdTime;
         }
+
     }
 
 

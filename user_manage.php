@@ -57,21 +57,17 @@ $maxUserId = $userDAO->getMaxUserId();
 <form name="addUserForm" method="post" action="user_manage.php">
     <table>
         <tr>
-            <td>UserID</td>
-            <td>
-                <input type="text" name="userID" id="userID" readonly
-                       value="<?php echo $maxUserId; ?>"
-            </td>
-        </tr>
-        <tr>
             <td>userName</td>
             <td>
+                <input type="hidden" name="userID" id="userID" readonly
+                       value="<?php echo $maxUserId; ?>">
                 <input type="text" name="userName" id="userName">
                 <?php
                 if (isset($errorMessage['userNameError'])) {
                     echo '<span style=\'color:red\'>' . $errorMessage['userNameError'] . '</span>';
                 }
                 ?>
+
             </td>
         </tr>
         <tr>
