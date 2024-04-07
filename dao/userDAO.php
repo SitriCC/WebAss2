@@ -34,7 +34,7 @@ class userDAO extends abstractDAO
         if ($result !== false && $result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 //Create a new user object, and add it to the array.
-                $user = new user($row['userID'], $row['firstName'], $row['lastName'], $row['email'], $row['createdTime']);
+                $user = new user($row['userID'], $row['userName'], $row['passWord'], $row['email'], $row['createdTime']);
                 $users[] = $user;
             }
             $result->free();
@@ -55,7 +55,7 @@ class userDAO extends abstractDAO
         $result = $stmt->get_result();
         if ($result->num_rows == 1) {
             $temp = $result->fetch_assoc();
-            $user = new user($temp['userID'], $temp['firstName'], $temp['lastName'], $temp['email'], $temp['createdTime']);
+            $user = new user($temp['userID'], $temp['userName'], $temp['passWord'], $temp['email'], $temp['createdTime']);
             $result->free();
             return $user;
         }
@@ -72,30 +72,30 @@ class userDAO extends abstractDAO
             $query = 'INSERT INTO Users VALUES (?,?,?,?,?)';
             $stmt = $this->mysqli->prepare($query);
             $userID = $user->getUserID();
-            $firstName = $user->getFirstName();
-            $lastName = $user->getLastName();
+            $userName = $user->getUserName();
+            $passWord = $user->getPassWord();
             $email = $user->getEmail();
             $createdTime = date('Y-m-d H:i:s');
-            $stmt->bind_param('issss', $userID, $firstName, $lastName, $email, $createdTime);
+            $stmt->bind_param('issss', $userID, $userName, $passWord, $email, $createdTime);
             $stmt->execute();
             if ($stmt->error) {
                 return $stmt->error;
             } else {
-                return $user->getFirstName() . ' ' . $user->getLastName() . ' ' . $user->getEmail() . ' ' . $createdTime . 'added successfully!';
+                return $user->getUserName() . ' ' . $user->getPassWord() . ' ' . $user->getEmail() . ' ' . $createdTime . 'added successfully!';
             }
         } else {
             return 'Could not connect to Database.';
         }
     }
 
-    public function updateUser($userID, $firstName, $lastName, $email): bool
+    public function updateUser($userID, $userName, $passWord, $email): bool
     {
 
         if (!$this->mysqli->connect_errno) {
             $createdTime = date('Y-m-d H:i:s');
-            $query = 'UPDATE Users SET firstName =?, lastName =?, email =?, createdTime =? WHERE userID =?';
+            $query = 'UPDATE Users SET userName =?, passWord =?, email =?, createdTime =? WHERE userID =?';
             $stmt = $this->mysqli->prepare($query);
-            $stmt->bind_param('ssssi',$firstName, $lastName, $email, $createdTime,$userID);
+            $stmt->bind_param('ssssi',$userName, $passWord, $email, $createdTime,$userID);
             $stmt->execute();
             if ($stmt->error) {
                 return false;

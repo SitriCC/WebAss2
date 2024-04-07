@@ -18,6 +18,7 @@
         <label for="password2">Re-Password</label>
         <input type="password" id="password2" name="password2">
         <button type="submit" class="create-btn">Create Account</button>
+        <button type="button" class="main-page" onclick="window.location.href='index.html'">Back to main page</button>
     </form>
 </div>
 </body>

@@ -15,8 +15,8 @@ $userDAO = new UserDAO();
 $hasError = false;
 $errorMessage = array();
 if (isset($_POST['userID']) ||
-    isset($_POST['firstName']) ||
-    isset($_POST['lastName']) ||
+    isset($_POST['userName']) ||
+    isset($_POST['passWord']) ||
     isset($_POST['email'])) {
 
         if (!is_numeric($_POST['userID']) || $_POST['userID'] == ""){
@@ -24,13 +24,13 @@ if (isset($_POST['userID']) ||
             $errorMessage['userIdError'] = "user ID must be a number";
         }
 
-    if ($_POST['firstName'] == "") {
-        $errorMessage['firstNameError'] = "请输入名字";
+    if ($_POST['userName'] == "") {
+        $errorMessage['userNameError'] = "请输入名字";
         $hasError = true;
     }
 
-    if ($_POST['lastName'] == "") {
-        $errorMessage['lastNameError'] = "请输入姓";
+    if ($_POST['passWord'] == "") {
+        $errorMessage['passWordError'] = "请输入姓";
         $hasError = true;
     }
 
@@ -40,7 +40,7 @@ if (isset($_POST['userID']) ||
     }
 
     if (!$hasError) {
-        $user = new user($_POST['userID'], $_POST['firstName'], $_POST['lastName'], $_POST['email']);
+        $user = new user($_POST['userID'], $_POST['userName'], $_POST['passWord'], $_POST['email']);
         $addSuccess = $userDAO->addUser($user);
         echo '<h3>' . $addSuccess . '</h3>';
     }
@@ -64,23 +64,23 @@ $maxUserId = $userDAO->getMaxUserId();
             </td>
         </tr>
         <tr>
-            <td>firstName</td>
+            <td>userName</td>
             <td>
-                <input type="text" name="firstName" id="firstName">
+                <input type="text" name="userName" id="userName">
                 <?php
-                if (isset($errorMessage['firstNameError'])) {
-                    echo '<span style=\'color:red\'>' . $errorMessage['firstNameError'] . '</span>';
+                if (isset($errorMessage['userNameError'])) {
+                    echo '<span style=\'color:red\'>' . $errorMessage['userNameError'] . '</span>';
                 }
                 ?>
             </td>
         </tr>
         <tr>
-            <td>lastName</td>
+            <td>passWord</td>
             <td>
-                <input type="text" name="lastName" id="lastName">
+                <input type="password" name="passWord" id="passWord">
                 <?php
-                if (isset($errorMessage['lastNameError'])) {
-                    echo '<span style=\'color:red\'>' . $errorMessage['lastNameError'] . '</span>';
+                if (isset($errorMessage['passWordError'])) {
+                    echo '<span style=\'color:red\'>' . $errorMessage['passWordError'] . '</span>';
                 }
                 ?>
             </td>
@@ -106,12 +106,12 @@ $maxUserId = $userDAO->getMaxUserId();
     $user = $userDAO->getUsers();
     if ($user) {
         echo '<table border=\'1\'>';
-        echo '<tr><th>UserID</th><th>firstName</th><th>lastName</th><th>Email</th><th>createdTime</th></tr>';
+        echo '<tr><th>UserID</th><th>userName</th><th>passWord</th><th>Email</th><th>createdTime</th></tr>';
         foreach ($user as $users) {
             echo '<tr>';
             echo '<td><a href=\'edit_user.php?userID=' . $users->getUserId() . '\'>' . $users->getUserId() . '</a></td>';
-            echo '<td>' . $users->getFirstName() . '</td>';
-            echo '<td>' . $users->getLastName() . '</td>';
+            echo '<td>' . $users->getUserName() . '</td>';
+            echo '<td>' . $users->getPassWord() . '</td>';
             echo '<td>' . $users->getEmail() . '</td>';
             echo '<td>' . $users->getCreatedTime() . '</td>';
             echo '</tr>';
