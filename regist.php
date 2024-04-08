@@ -68,6 +68,8 @@ try {
             echo '<span style=\'color:red\'>' . $errorMessage['passWordError'] . '</span>';
         }
         ?>
+        <label for="password2">Re-Password</label>
+        <input type="password" id="password2" name="password2">
         <label for="email">Email</label>
         <input type="text" name="email" id="email">
         <?php
@@ -76,9 +78,6 @@ try {
         }
         ?>
 
-
-        <label for="password2">Re-Password</label>
-        <input type="password" id="password2" name="password2">
         <button type="submit" class="create-btn">Create Account</button>
         <button type="button" class="main-page" onclick="window.location.href='index.php'">Back to main page</button>
     </form>
