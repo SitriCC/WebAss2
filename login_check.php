@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($userDAO->authenticateUser($userName, $passWord)) {
         session_start();
         $_SESSION['userName'] = $userName;
-        header('Location: index.php');
+        header('Location: post_blog.php');
         exit();
     } else {
         header('Location: login.php?error=Invalid credentials');
