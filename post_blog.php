@@ -32,7 +32,7 @@ if(
 
     if(!$hasError){
         $currentTime = date('Y-m-d H:i:s');
-        $imageUrl = '';//todo: obtain the current upload filename's full name; for example: get imageUrl upload filename
+        $imageUrl = '';
         $blog = new blog(null, $_POST['title'], $_POST['content'], $imageUrl, $currentTime, $currentTime);
         $addSuccess = $blogDAO->addBlog($blog);
         echo '<h3 id="success_post">' . $addSuccess . '</h3>';
@@ -52,18 +52,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (move_uploaded_file($_FILES['imageUrl']['tmp_name'], $uploadFile)) {
             $uploadSuccess = true;
             if ($uploadSuccess) {
-                    // Alert the user with the file name using JavaScript
                 alert('File "<?php echo htmlspecialchars($imageUrl); ?>" uploaded successfully.');
             }
         }
-    }
-
-    if($uploadSuccess) {
-        // TODO: Get other post data, create a new blog object and add it to the database
-        $currentTime = date('Y-m-d H:i:s');
-        $blog = new blog(null, $_POST['title'], $_POST['content'], $currentTime, $currentTime, $fileName);
-        $blogDAO = new BlogDAO();
-        $blogDAO->addBlog($blog);
     }
 }
 if(isset($_GET['deleted'])){
