@@ -14,7 +14,7 @@ class abstractDAO {
     function __construct() {
         try{
             $this->mysqli = new mysqli(self::$DB_HOST, self::$DB_USERNAME, 
-                self::$DB_PASSWORD, self::$DB_DATABASE,3308);
+                self::$DB_PASSWORD, self::$DB_DATABASE,3306);
         }catch(mysqli_sql_exception $e){
             throw $e;
         }
