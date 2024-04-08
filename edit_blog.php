@@ -58,14 +58,12 @@ if(!isset($_GET['blogID']) || !is_numeric($_GET['blogID'])){
                     </td>
                 </tr>
                 <tr>
-                    <td><input type="submit" name="btnSubmit" id="btnSubmit" value="Update Blog"></td>
-                    <td><button onclick="delBlog(document.getElementById('blogID').value)" id="btnDelete"
-                                name="btnDelete">Delete Blog</button>
-                    </td>
+                    <td><input type="submit" class="form__btn" name="btnSubmit" id="btnSubmit" value="Update Blog"></td>
+                    <td><input type="submit" class="form__btn" name="btnSubmit" id="btnSubmit" onclick="delBlog(document.getElementById('blogID').value)"
+                               value="Delete Blog"></td>
                 </tr>
             </table>
         </form>
-        <h4><a href="index.php">Back to main page</a></h4>
         <?php
         include "footer.php"
         ?>

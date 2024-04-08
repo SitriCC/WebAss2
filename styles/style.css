@@ -1,29 +1,10 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
-@import url(https://fonts.googleapis.com/css?family=Merriweather);
-
-
-#success_post {
-    text-align: center;
-}
-#success_edit {
-    text-align: center;
-}
-#success_del {
-    text-align: center;
-}
-
-
-body, h1, h2, h3, p {
-    margin: 0;
-    padding: 0;
-}
 
 
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     color: #333;
-    padding-bottom: 100px; /* Push footer down */
+    padding-bottom: 100px;
 }
 
 
@@ -37,7 +18,7 @@ body {
 .container {
     width: 80%;
     margin: auto;
-    overflow: hidden; /* Clearfix for floated elements */
+    overflow: hidden;
 }
 
 
@@ -133,4 +114,49 @@ input[type="submit"]:hover {
 .blog-image {
  width: 100px;
  height: 100px;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+}
+
+input[type="file"] {
+    margin-top: 5px;
+}
+
+
+input[class="form__btn"]:hover {
+    background-color: darkblue;
+}
+
+input[class="form__btn"] {
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+
+
+a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: lightblue;
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    background-color: deepskyblue;
 }

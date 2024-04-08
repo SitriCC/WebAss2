@@ -1,5 +1,4 @@
 <?php
-// 确保会话已经开始
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -13,15 +12,13 @@ if (session_status() == PHP_SESSION_NONE) {
     <div class="container">
         <h1>Blog Platform</h1>
         <nav class="blog-nav">
-            <a href="home.php">Home</a>
-            <a href="showblog.php">About</a>
+            <a href="index.php">Home</a>
+            <a href="post_blog.php">Post</a>
             <a href="contact.php">Contact</a>
             <?php if (isset($_SESSION['userName'])): ?>
-                <!-- 用户已登录，显示用户名 -->
                 <a href="index.php"><?php echo htmlspecialchars($_SESSION['userName']); ?></a>
                 <a href="logout.php">Logout</a>
             <?php else: ?>
-                <!-- 用户未登录，显示登录链接 -->
                 <a href="login.php">Login</a>
             <?php endif; ?>
         </nav>
