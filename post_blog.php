@@ -32,10 +32,38 @@ if(
 
     if(!$hasError){
         $currentTime = date('Y-m-d H:i:s');
-        $imageUrl = 'images/' . random_int(1, 100) . '.png';
+        $imageUrl = '';//todo: obtain the current upload filename's full name; for example: get imageUrl upload filename
         $blog = new blog(null, $_POST['title'], $_POST['content'], $imageUrl, $currentTime, $currentTime);
         $addSuccess = $blogDAO->addBlog($blog);
         echo '<h3 id="success_post">' . $addSuccess . '</h3>';
+    }
+}
+
+$uploadSuccess = false;
+$fileName = '';
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Check if file was uploaded without errors
+    if (isset($_FILES['imageUrl']) && $_FILES['imageUrl']['error'] == UPLOAD_ERR_OK) {
+        $uploadDir = __DIR__ . '/images/';
+        $fileName = basename($_FILES['imageUrl']['name']);
+        $uploadFile = $uploadDir . $fileName;
+
+        // Move the file from temporary location to the target directory
+        if (move_uploaded_file($_FILES['imageUrl']['tmp_name'], $uploadFile)) {
+            $uploadSuccess = true;
+            if ($uploadSuccess) {
+                    // Alert the user with the file name using JavaScript
+                alert('File "<?php echo htmlspecialchars($imageUrl); ?>" uploaded successfully.');
+            }
+        }
+    }
+
+    if($uploadSuccess) {
+        // TODO: Get other post data, create a new blog object and add it to the database
+        $currentTime = date('Y-m-d H:i:s');
+        $blog = new blog(null, $_POST['title'], $_POST['content'], $currentTime, $currentTime, $fileName);
+        $blogDAO = new BlogDAO();
+        $blogDAO->addBlog($blog);
     }
 }
 if(isset($_GET['deleted'])){
@@ -44,6 +72,12 @@ if(isset($_GET['deleted'])){
     }
 }
 ?>
+    <script type="text/javascript">
+        // If a file was uploaded, alert the user with the file name
+        <?php if ($uploadSuccess): ?>
+        alert('File "<?php echo $fileName; ?>" uploaded successfully.');
+        <?php endif; ?>
+    </script>
 <form name="addBlog" method="post" action="post_blog.php">
     <table>
         <tr>
@@ -57,14 +91,18 @@ if(isset($_GET['deleted'])){
             </td>
         </tr>
         <tr>
+            <td><label for="imageUrl">Choose File:</label></td>
+            <td><input type="file" id="imageUrl" name="imageUrl"></td>
+        </tr>
+        <tr>
             <td>Content:</td>
             <td>
                 <textarea id="content" name="content" rows="20" cols="100">
-                                   <?php
-                                   if(isset($errorMessages['contentError'])){
-                                       echo '<span style=\'color:red\'>' . $errorMessages['contentError'] . '</span>';
-                                   }
-                                   ?>
+                   <?php
+                   if(isset($errorMessages['contentError'])){
+                       echo '<span style=\'color:red\'>' . $errorMessages['contentError'] . '</span>';
+                   }
+                   ?>
                 </textarea>
 
             </td>

@@ -14,7 +14,6 @@ if (session_status() == PHP_SESSION_NONE) {
         <nav class="blog-nav">
             <a href="index.php">Home</a>
             <a href="post_blog.php">Post</a>
-            <a href="contact.php">Contact</a>
             <?php if (isset($_SESSION['userName'])): ?>
                 <a href="index.php"><?php echo htmlspecialchars($_SESSION['userName']); ?></a>
                 <a href="logout.php">Logout</a>
