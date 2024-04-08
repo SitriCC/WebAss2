@@ -14,7 +14,7 @@
             echo '<span style="color: red">You must be logged in to post. Please log in.</span>';
         }
         ?>
-        <h2>Login to High Blog</h2>
+        <h2>User Login</h2>
         <form action="login_check.php" method="post">
             <label for="user-name">User Name</label>
             <input id="user-name" name="userName" type="text" required>
