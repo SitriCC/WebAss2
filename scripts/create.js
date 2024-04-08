@@ -43,22 +43,22 @@ document.addEventListener('DOMContentLoaded', () => {
         const password2 = password2Input.value;
 
         if (!validateEmail(email)) {
-            applyError(emailInput, '请输入有效的邮箱地址。');
+            applyError(emailInput, 'Please enter a valid email address.');
             isValid = false;
         }
 
         if (userName.length < 4) {
-            applyError(userNameInput, '用户名至少需要4个字符。');
+            applyError(userNameInput, 'Username must be at least 4 characters.');
             isValid = false;
         }
 
         if (password.length < 6) {
-            applyError(passwordInput, '密码至少需要6个字符。');
+            applyError(passwordInput, 'Password must be at least 6 characters.');
             isValid = false;
         }
 
         if (password !== password2 || password2 === '') {
-            applyError(password2Input, '验证密码不能为空或与密码不同。');
+            applyError(password2Input, 'Confirm password cannot be blank or different from password.');
             isValid = false;
         }
 
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', function(event) {
         event.preventDefault();
         if (validateForm()) {
-            alert('表单验证通过，准备提交数据！');
+            alert('Form validation passed, ready to submit data!');
 
             form.submit();
         }

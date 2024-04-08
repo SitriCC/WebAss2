@@ -10,8 +10,43 @@
 <body>
 <?php
 include "header.php";
-$userDAO = new UserDAO();
+try {
+    $userDAO = new UserDAO();
+    $hasError = false;
+    $errorMessage = array();
+
+    if (isset($_POST['userID']) ||
+        isset($_POST['userName']) ||
+        isset($_POST['passWord']) ||
+        isset($_POST['email'])) {
+        if (!is_numeric($_POST['userID']) || $_POST['userID'] == ""){
+            $hasError = true;
+            $errorMessage['userIdError'] = "user ID must be a number";
+        }
+        if ($_POST['userName'] == "") {
+            $errorMessage['userNameError'] = "Please enter a name";
+            $hasError = true;
+        }
+        if ($_POST['password'] == "") {
+            $errorMessage['passWordError'] = "Please enter last name";
+            $hasError = true;
+        }
+        if ($_POST['email'] == "") {
+            $errorMessage['emailError'] = "Please enter your e-mail address";
+            $hasError = true;
+        }
+        if (!$hasError) {
+            $user = new user($_POST['userID'], $_POST['userName'], $_POST['password'], $_POST['email']);
+            $addSuccess = $userDAO->addUser($user);
+            echo '<h3>' . $addSuccess . '</h3>';
+        }
+    }
     $maxUserId = $userDAO->getMaxUserId();
+
+}catch(Exception $e){
+    echo '<h3>Error on page.</h3>';
+    echo '<p>' . $e->getMessage() . '</p>';
+}
 
 ?>
 <div class="create-box">
