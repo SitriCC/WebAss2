@@ -12,26 +12,29 @@
 include "header.php"
 ?>
 <?php
-try{
-$blogDAO = new blogDAO();
+try {
+    // Instantiate a new blogDAO object
+    $blogDAO = new blogDAO();
     $blogs = $blogDAO->getBlogs();
-    if($blogs){
+    if ($blogs) {
+        // Start a table to display the blogs
         echo '<table class="form_showblog">';
-        foreach($blogs as $postBlg){
+        foreach ($blogs as $postBlg) {
             echo '<tr style="text-align: center;">';
             echo '<td><img src="' . $postBlg->getImageUrl() . '" alt="ImageUrl ' . $postBlg->getBlogId() . '" style="width:50%; height:20%; padding-left:50px; padding-right: 50px; padding-bottom:2px; padding-top:20px; text-align: center;"></td>';
-            echo '<td><tr><td style="text-align: center; font-size: 30px; font-weight: bold;"><a href=\'edit_blog.php?blogID='. $postBlg->getBlogId() . '\'>' . $postBlg->getTitle() . '</a></td></tr><tr><td style="padding-left:25%; padding-right: 25%; text-align: left;">' . $postBlg->getContent() . '</td></tr></td>';
-            echo '<td style="text-align: center;">' . '<span>CreatedTime: </span>'.$postBlg->getCreatedTime() . '</td>';
+            echo '<td><tr><td style="text-align: center; font-size: 30px; font-weight: bold;"><a href=\'edit_blog.php?blogID=' . $postBlg->getBlogId() . '\'>' . $postBlg->getTitle() . '</a></td></tr><tr><td style="padding-left:25%; padding-right: 25%; text-align: left;">' . $postBlg->getContent() . '</td></tr></td>';
+            echo '<td style="text-align: center;">' . '<span>CreatedTime: </span>' . $postBlg->getCreatedTime() . '</td>';
             echo '</tr>';
         }
     }
 
-    }catch(Exception $e){
-        echo '<h3>Error on page.</h3>';
-        echo '<p>' . $e->getMessage() . '</p>';
-    }
-    ?>
+} catch (Exception $e) {
+    echo '<h3>Error on page.</h3>';
+    echo '<p>' . $e->getMessage() . '</p>';
+}
+?>
 <?php
+// Include the footer section of the page
 include "footer.php"
 ?>
 </body>
