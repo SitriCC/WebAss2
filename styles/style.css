@@ -12,9 +12,14 @@ body {
     background-color: #333;
     color: #fff;
     padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
-
-
+.username {
+    text-align: right;
+    width: 100%;
+}
 .container {
     width: 80%;
     margin: auto;
@@ -64,10 +69,10 @@ footer {
 }
 <!-- style for contact page start-->
 
-.contact-section {
- padding: 20px;
- background: #f9f9f9;
-}
+     .contact-section {
+         padding: 20px;
+         background: #f9f9f9;
+     }
 
 .container {
     width: 80%;
@@ -96,6 +101,18 @@ textarea {
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ddd;
+}
+
+input[type="submit"] {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #555;
 }
 
 <!-- style for contact page end-->
@@ -133,8 +150,6 @@ input[class="form__btn"] {
     border: none;
     cursor: pointer;
 }
-
-
 
 a {
     display: inline-block;

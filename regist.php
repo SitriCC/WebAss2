@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Create Account</title>
     <link rel="stylesheet" href="styles/create.css">
-    <script src="scripts/create.js"></script>
+<!--    <script src="scripts/create.js"></script>-->
 </head>
 <body>
 <?php
