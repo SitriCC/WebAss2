@@ -1,6 +1,14 @@
-<?php require_once('./dao/blogDAO.php'); ?>
+<?php require_once('./dao/blogDAO.php');
+session_start();
+if (isset($_GET['blogID'])) {
+    $blogID = $_GET['blogID'];
+    $_SESSION['blogID'] = $blogID;
+} else {
+    echo "No blog selected.";
+}
+?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Blogs</title>
@@ -22,10 +30,19 @@ try {
         foreach ($blogs as $postBlg) {
             echo '<tr style="text-align: center;">';
             echo '<td><img src="' . $postBlg->getImageUrl() . '" alt="ImageUrl ' . $postBlg->getBlogId() . '" style="width:50%; height:20%; padding-left:50px; padding-right: 50px; padding-bottom:2px; padding-top:20px; text-align: center;"></td>';
-            echo '<td><tr><td style="text-align: center; font-size: 30px; font-weight: bold;"><a href=\'edit_blog.php?blogID=' . $postBlg->getBlogId() . '\'>' . $postBlg->getTitle() . '</a></td></tr><tr><td style="padding-left:25%; padding-right: 25%; text-align: left;">' . $postBlg->getContent() . '</td></tr></td>';
-            echo '<td style="text-align: center;">' . '<span>CreatedTime: </span>' . $postBlg->getCreatedTime() . '</td>';
-            echo '</tr>';
-        }
+            if (isset($_SESSION["userName"])):
+                echo '<td><tr><td style="text-align: center; font-size: 30px; font-weight: bold;">        
+                    <a href=\'edit_blog.php?blogID=' . $postBlg->getBlogId() . '\'>' . $postBlg->getTitle() . '</a>
+                    <a href=\'comments.php?blogID=' . $postBlg->getBlogId() . '\'>View Comments</a> 
+                    </td></td></tr><tr><td style="padding-left:25%; padding-right: 25%; text-align: left;">' . $postBlg->getContent() . '</td></tr></td>';
+            else:
+                echo '<td><tr><td style="text-align: center; font-size: 30px; font-weight: bold;">
+                      <a href="login.PHP?redirected=true">' . $postBlg->getTitle() . '</a><a href="login.PHP?redirected=true">View Comments</a>
+                      </td></td></tr><tr><td style="padding-left:25%; padding-right: 25%; text-align: left;">' . $postBlg->getContent() . '</td></tr></td>';
+            endif;
+                echo '<td style="text-align: center;">' . '<span>CreatedTime: </span>' . $postBlg->getCreatedTime() . '</td>';
+                echo '</tr>';
+            }
     }
 
 } catch (Exception $e) {

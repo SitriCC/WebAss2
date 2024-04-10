@@ -12,13 +12,13 @@ class blogDAO extends abstractDAO{
 
     public function getBlogs(){
         //The query method returns a mysqli_result object
-        $result = $this->mysqli->query('SELECT b.blogID, b.title, b.content, b.imageUrl, b.createdTime, b.updatedTime FROM Blogs b');
+        $result = $this->mysqli->query('SELECT b.blogID, b.title, b.content, b.imageUrl, b.createdTime FROM Blogs b');
         $arrBlog = Array();
 
         if($result->num_rows >= 1){
             while($row = $result->fetch_assoc()){
                 //Create a new employee object, and add it to the array.
-                $blog = new blog($row['blogID'], $row['title'], $row['content'], $row['imageUrl'], $row['createdTime'], $row['updatedTime']);
+                $blog = new blog($row['blogID'], $row['title'], $row['content'], $row['imageUrl'], $row['createdTime']);
                 $arrBlog[] = $blog;
             }
             $result->free();
@@ -29,14 +29,14 @@ class blogDAO extends abstractDAO{
     }
 
     public function getBlogById($blogID){
-        $query = 'SELECT b.blogID, b.title, b.content, b.imageUrl, b.createdTime, b.updatedTime FROM Blogs b WHERE blogID = ?';
+        $query = 'SELECT b.blogID, b.title, b.content, b.imageUrl, b.createdTime FROM Blogs b WHERE blogID = ?';
         $stmt = $this->mysqli->prepare($query);
         $stmt->bind_param('i', $blogID);
         $stmt->execute();
         $result = $stmt->get_result();
         if($result->num_rows == 1){
             $temp = $result->fetch_assoc();
-            $bl = new Blog($temp['blogID'], $temp['title'], $temp['content'], $temp['imageUrl'], $temp['createdTime'], $temp['updatedTime']);
+            $bl = new Blog($temp['blogID'], $temp['title'], $temp['content'], $temp['imageUrl'], $temp['createdTime']);
             $result->free();
             return $bl;
         }
@@ -47,14 +47,14 @@ class blogDAO extends abstractDAO{
 
     public function addBlog($blog){
         if(!$this->mysqli->connect_errno){
-            $query = 'INSERT INTO Blogs (title, content,imageUrl,createdTime,updatedTime) VALUES (?,?,?,?,?)';
+            $query = 'INSERT INTO Blogs (title, content,imageUrl,createdTime) VALUES (?,?,?,?,?)';
             $stmt = $this->mysqli->prepare($query);
             $title = $blog->getTitle();
             $content = $blog->getContent();
             $imageUrl = $blog->getImageUrl();
             $createdTime = $blog->getCreatedTime();
             $updatedTime = $blog->getUpdatedTime();
-            $stmt->bind_param('sssss',  $title, $content,$imageUrl, $createdTime, $updatedTime);
+            $stmt->bind_param('sssss',  $title, $content,$imageUrl, $createdTime);
             //Execute the statement
             $stmt->execute();
             if($stmt->error){

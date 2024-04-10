@@ -7,7 +7,7 @@ class blog
     private $content;
     private $imageUrl;
     private $createdTime;
-    private $updatedTime;
+    private $comment;
     //user is a property to hold author's info
     public $user;
 
@@ -17,9 +17,9 @@ class blog
      * @param $title
      * @param $content
      * @param $createdTime
-     * @param $updatedTime
+     * @param $comment
      */
-    public function __construct($blogID, $title, $content, $imageUrl, $createdTime, $updatedTime)
+    public function __construct($blogID, $title, $content, $imageUrl, $createdTime, $comment = null)
     {
         if ($blogID !== null) {
             $this->blogID = $blogID;
@@ -28,7 +28,9 @@ class blog
         $this->content = $content;
         $this->imageUrl = $imageUrl;
         $this->createdTime = $createdTime;
-        $this->updatedTime = $updatedTime;
+        if ($comment !== null) {
+            $this->comment = $comment;
+        }
     }
 
     /**
@@ -130,17 +132,17 @@ class blog
     /**
      * @return mixed
      */
-    public function getUpdatedTime()
+    public function getComment()
     {
-        return $this->updatedTime;
+        return $this->comment;
     }
 
     /**
      * @param mixed $updatedTime
      */
-    public function setUpdatedTime($updatedTime)
+    public function setComment($comment)
     {
-        $this->updatedTime = $updatedTime;
+        $this->comment = $comment;
     }
 
 

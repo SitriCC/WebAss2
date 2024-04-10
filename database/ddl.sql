@@ -20,6 +20,6 @@ CREATE TABLE Blogs (
                        content TEXT ,
                        imageUrl VARCHAR(255) ,
                        createdTime DATETIME DEFAULT CURRENT_TIMESTAMP,
-                       updatedTime DATETIME ON UPDATE CURRENT_TIMESTAMP
+                       comment TEXT
 );
 

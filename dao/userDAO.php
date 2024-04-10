@@ -6,7 +6,6 @@ require_once('./model/user.php');
  * and open the template in the editor.
  */
 
-
 class userDAO extends abstractDAO
 {
 
