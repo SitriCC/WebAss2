@@ -1,0 +1,86 @@
+/* blogStyles.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+}
+
+header, footer {
+    background: #00405d;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px 0;
+}
+
+h3 {
+    color: #00405d;
+}
+
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #dddddd;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    background-color: #00405d;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+input[type="text"], textarea, input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="submit"], input[type="reset"] {
+    background-color: #00405d;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover, input[type="reset"]:hover {
+    background-color: #002a37;
+}
+
+.error {
+    color: red;
+    font-size: 0.9em;
+}
+
+#success_post, #success_del {
+    color: #28a745;
+}
+
+.form__btn {
+    font-size: 0.9em;
+}
+
+.form__box {
+    margin-top: 20px;
+}

@@ -16,6 +16,7 @@ if (!isset($_GET['blogID']) || !is_numeric($_GET['blogID'])) {
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <title>Edit Comment for Blog - </title>
+            <link rel="stylesheet" href="styles/cmt.css">
         </head>
         <body>
         <?php include "header.php"; ?>
@@ -28,29 +29,37 @@ if (!isset($_GET['blogID']) || !is_numeric($_GET['blogID'])) {
             echo "<p>Please fill in all required fields.</p>";
         }
         ?>
-        <h3>Edit Comment</h3>
+        <h3>Comment Page</h3>
 
-        <?php
-        $commentsString = $commentDAO->getComment($blogID);
-        if (!empty($commentsString)) {
-            $commentsArray = explode("||", $commentsString);
-            echo '<ul>';
-            foreach ($commentsArray as $comment) {
-                echo '<li>' . htmlspecialchars($comment) . '</li>';
-            }
-            echo '</ul>';
-        } else {
-            echo "<p>No comments yet.</p>";
-        }
-        ?>
+        <div class="image-comment-container">
+            <!-- Image Container -->
+            <div class="img-container">
+                <img src="<?php echo $blog->getImageUrl(); ?>" alt="Blog Image">
+            </div>
+
+            <!-- Comments -->
+            <div class="comment-section">
+                <?php
+                $commentsString = $commentDAO->getComment($blogID);
+                if (!empty($commentsString)) {
+                    $commentsArray = explode("||", $commentsString);
+                    echo '<ul>';
+                    foreach ($commentsArray as $comment) {
+                        echo '<li>' . htmlspecialchars($comment) . '</li>';
+                    }
+                    echo '</ul>';
+                } else {
+                    echo "<p>No comments yet.</p>";
+                }
+                ?>
+            </div>
+        </div>
         <form name="editComment" method="post" action="comment_process.php">
             <input type="hidden" name="action" value="edit">
             <input type="hidden" name="blogID" value="<?php echo $blogID; ?>">
-            <?php
-            echo '<img src="' . $blog->getImageUrl() . '" alt="ImageUrl ' . $blog->getBlogId() . '" style="width:50%; height:20%; padding-left:50px; padding-right: 50px; padding-bottom:2px; padding-top:20px; text-align: center;">'
-            ?>
-
-            <p>Comments:</p>
+            <h3>Content</h3>
+            <p class="content"><?php echo $blog->getContent()?></p>
+            <h3>Comments:</h3>
             <textarea name="comment" rows="10" cols="100"></textarea>
             <br>
             <input type="submit" value="Update Comments">
