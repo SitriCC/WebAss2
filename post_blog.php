@@ -26,7 +26,7 @@ if(
         $hasError = true;
     }
 
-    if($_POST['content'] == ""){
+    if(trim($_POST['content']) == ""){
         $errorMessages['contentError'] = "Please enter a Content.";
         $hasError = true;
     }
@@ -82,13 +82,12 @@ if(isset($_GET['deleted'])){
             <td>Content:</td>
             <td>
                 <textarea id="content" name="content" rows="20" cols="100">
-                   <?php
-                   if(isset($errorMessages['contentError'])){
-                       echo '<span style=\'color:red\'>' . $errorMessages['contentError'] . '</span>';
-                   }
-                   ?>
                 </textarea>
-
+                <?php
+                if(isset($errorMessages['contentError'])){
+                    echo '<span style=\'color:red\'>' . $errorMessages['contentError'] . '</span>';
+                }
+                ?>
             </td>
         </tr>
         <tr class="form__box">
