@@ -22,7 +22,7 @@ try {
         echo '<table class="form_showblog">';
         foreach ($blogs as $postBlg) {
             echo '<tr style="text-align: center;">';
-            echo '<td><img src="' . $postBlg->getImageUrl() . '" alt="ImageUrl ' . $postBlg->getBlogId() . '" style="width:50%; height:20%; padding-left:50px; padding-right: 50px; padding-bottom:2px; padding-top:20px; text-align: center;"></td>';
+            echo '<td><img src="' . $postBlg->getImageUrl() . '" alt="ImageUrl: ' . $postBlg->getImageUrl() . '" style="width:50%; height:20%; padding-left:50px; padding-right: 50px; padding-bottom:2px; padding-top:20px; text-align: center;"></td>';
             if (isset($_SESSION["userName"])):
                 echo '<td><tr><td style="text-align: center; font-size: 30px; font-weight: bold;">        
                     <a href=\'edit_blog.php?blogID=' . $postBlg->getBlogId() . '\'>' . $postBlg->getTitle() . '</a>

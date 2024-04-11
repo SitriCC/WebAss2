@@ -21,6 +21,7 @@ class blog
      */
     public function __construct($blogID, $title, $content, $imageUrl, $createdTime, $comment = null)
     {
+
         if ($blogID !== null) {
             $this->blogID = $blogID;
         }
