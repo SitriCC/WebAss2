@@ -27,7 +27,7 @@ if(!isset($_GET['blogID']) || !is_numeric($_GET['blogID'])){
         <?php
         if(isset($_GET['recordsUpdated'])){
             if(is_numeric($_GET['recordsUpdated'])){
-                echo '<h3 id="success_edit"> '. $_GET['recordsUpdated']. ' Blog Record Updated.</h3>';
+                echo '<h3 id="success_edit" style="text-align: center"> '. $_GET['recordsUpdated']. ' BLOG UPDATED SUCEESSFULLY!.</h3>';
             }
         }
         if(isset($_GET['missingFields'])){

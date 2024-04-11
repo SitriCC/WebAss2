@@ -3,8 +3,6 @@ session_start();
 if (isset($_GET['blogID'])) {
     $blogID = $_GET['blogID'];
     $_SESSION['blogID'] = $blogID;
-} else {
-    echo "No blog selected.";
 }
 ?>
 <!DOCTYPE html>
