@@ -1,0 +1,70 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+header, footer {
+    background-color: #022b3a;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+}
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+ul li {
+    background-color: #fff;
+    margin-top: 8px;
+    padding: 8px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+input[type="submit"] {
+    background-color: #006494;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+input[type="submit"]:hover {
+    background-color: #005082;
+}
+.image-comment-container {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px; /* Spacing between this container and the content below */
+}
+
+/* Ensure the image does not take too much space */
+.img-container img {
+    width: 200px; /* Adjust the size as needed */
+    height: auto;
+    border-radius: 8px;
+    margin-right: 20px; /* Spacing between the image and the comments */
+}
+
+/* Container for the content */
+.content-container {
+    margin-top: 20px;
+}
+
+/* Style adjustments for the comment section for better alignment */
+.comment-section {
+    flex-grow: 1;
+}
+
+textarea {
+    width: 100%; /* Make the textarea fill the available space */
+}
