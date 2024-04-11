@@ -47,20 +47,19 @@ class blogDAO extends abstractDAO{
 
     public function addBlog($blog){
         if(!$this->mysqli->connect_errno){
-            $query = 'INSERT INTO Blogs (title, content,imageUrl,createdTime) VALUES (?,?,?,?,?)';
+            $query = 'INSERT INTO Blogs (title, content,imageUrl,createdTime) VALUES (?,?,?,?)';
             $stmt = $this->mysqli->prepare($query);
             $title = $blog->getTitle();
             $content = $blog->getContent();
             $imageUrl = $blog->getImageUrl();
             $createdTime = $blog->getCreatedTime();
-            $updatedTime = $blog->getUpdatedTime();
-            $stmt->bind_param('sssss',  $title, $content,$imageUrl, $createdTime);
+            $stmt->bind_param('ssss',  $title, $content,$imageUrl, $createdTime);
             //Execute the statement
             $stmt->execute();
             if($stmt->error){
                 return $stmt->error;
             } else {
-                return '[' . $title . ']' . ' <br>POST SUCCESSFULLY!';
+                return 'TOPIC [' . $title . ']' . ' POST SUCCESSFULLY!';
             }
         } else {
             return 'Could not connect to Database.';

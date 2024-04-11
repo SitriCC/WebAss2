@@ -19,7 +19,8 @@ $errorMessages = Array();
 
 if(
     isset($_POST['title']) ||
-    isset($_POST['content'])){
+    isset($_POST['content'])
+){
     if($_POST['title'] == ""){
         $errorMessages['titleError'] = "Please enter a Title.";
         $hasError = true;
@@ -29,46 +30,38 @@ if(
         $errorMessages['contentError'] = "Please enter a Content.";
         $hasError = true;
     }
-
-    if(!$hasError){
-        $currentTime = date('Y-m-d H:i:s');
-        $imageUrl = '';
-        $blog = new blog(null, $_POST['title'], $_POST['content'], $imageUrl, $currentTime, $currentTime);
-        $addSuccess = $blogDAO->addBlog($blog);
-        echo '<h3 id="success_post">' . $addSuccess . '</h3>';
-    }
-}
-
-$uploadSuccess = false;
-$fileName = '';
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Check if file was uploaded without errors
-    if (isset($_FILES['imageUrl']) && $_FILES['imageUrl']['error'] == UPLOAD_ERR_OK) {
-        $uploadDir = __DIR__ . '/images/';
+    $uploadSuccess = false;
+    $fileName = '';
+    if (isset($_FILES['imageUrl'])) {
+        $uploadDir =  'images/';
+        echo '<h1>' . $uploadDir . '</h1>';
         $fileName = basename($_FILES['imageUrl']['name']);
         $uploadFile = $uploadDir . $fileName;
-
-        // Move the file from temporary location to the target directory
         if (move_uploaded_file($_FILES['imageUrl']['tmp_name'], $uploadFile)) {
             $uploadSuccess = true;
             if ($uploadSuccess) {
-                alert('File "<?php echo htmlspecialchars($imageUrl); ?>" uploaded successfully.');
+                alert('File "<?php echo $imageUrl ?>" uploaded successfully.');
             }
         }
     }
+
+
+    if(!$hasError){
+        $currentTime = date('Y-m-d H:i:s');
+        $fullImageUrl = 'images/'.$_POST['imageUrl'];
+        $blog = new blog(null, $_POST['title'], $_POST['content'], $fullImageUrl, $currentTime,null);
+        $addSuccess = $blogDAO->addBlog($blog);
+        echo '<h3 id="success_post" style="text-align: center">' . $addSuccess . '</h3>';
+    }
 }
+
 if(isset($_GET['deleted'])){
     if($_GET['deleted'] == true){
         echo '<h3 id="success_del">Blog Deleted Success</h3>';
     }
 }
 ?>
-    <script type="text/javascript">
-        // If a file was uploaded, alert the user with the file name
-        <?php if ($uploadSuccess): ?>
-        alert('File "<?php echo $fileName; ?>" uploaded successfully.');
-        <?php endif; ?>
-    </script>
+
 <form name="addBlog" method="post" action="post_blog.php">
     <table>
         <tr>
